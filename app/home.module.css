@@ -1,0 +1,44 @@
+.reactTyped{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 3em;
+    translate: 0 35vh;
+    
+}
+
+.name{
+    color: white;
+    text-align: center;
+    translate: 0 30vh;
+    font-size: 4em;
+}
+
+.icons{
+    display: flex;
+    justify-content: center;
+    gap: 3vw;
+    translate: 0 40vh;
+}
+
+.iconGithub{
+    color: white;
+}
+
+.iconGithub:hover{
+    color: rgb(43, 49, 55);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.iconLinkedin{
+    color: white;
+    
+
+}
+
+.iconLinkedin:hover{
+    color: rgb(0, 119, 181);
+    transition: all 0.3s;
+    cursor: pointer;
+}
