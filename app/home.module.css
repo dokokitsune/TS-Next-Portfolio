@@ -65,3 +65,15 @@
 }
 
 /* React PDF */
+
+.pageContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.page{
+    width: 50vw;
+    height: 90vh;
+}
+
+

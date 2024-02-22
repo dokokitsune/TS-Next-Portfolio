@@ -1,11 +1,7 @@
 "use client"
 import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
-import { Document, Page } from 'react-pdf'
-
-import pdf from "./types.s"
-
-
+import styles from '../home.module.css'
 
 
 
@@ -13,16 +9,12 @@ import pdf from "./types.s"
 
 export default function Resume() {
 
-  const resumePDF = pdf("./Tech Resume.pdf")
+
 
 
   return (
-    <div>
-      <Document file={resumePDF}>
-        <Page pageNumber={1} />
-
-      </Document>
-      
+    <div className={styles.pageContainer}>
+      <iframe className={styles.page} src='/pdfs/Tech Resume.pdf' />
     </div>
   )
 }
