@@ -12,41 +12,41 @@ export default function Navbar() {
     setIsActive(path);
   }, [path]);
 
-  console.log(path);
+  // console.log(path);
   return (
     <nav>
-    <ul className={styles.navBar}>
-      <li>
-        <Link
-          className={`${styles.LinkElements} ${
-            isActive === "/" ? "active" : ""
-          }`}
-          href="/"
-        >
-          Home
-        </Link>
-      </li>
-      <li>
-        <Link className={styles.LinkElements} href="aboutMe/">
-          About Me
-        </Link>
-      </li>
-      <li>
-        <Link className={styles.LinkElements} href="projects/">
-          Projects
-        </Link>
-      </li>
-      <li>
-        <Link className={styles.LinkElements} href="contactMe/">
-          Contact Me
-        </Link>
-      </li>
-      <li>
-        <Link className={styles.LinkElements} href="resume/">
-          Resume
-        </Link>
-      </li>
-    </ul>
+      <ul className={styles.navBar}>
+        <li>
+          <Link
+            className={`${styles.LinkElements} ${
+              isActive === "/" ? "active" : ""
+            }`}
+            href="/"
+          >
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link className={styles.LinkElements} href="aboutMe/">
+            About Me
+          </Link>
+        </li>
+        <li>
+          <Link className={styles.LinkElements} href="projects/">
+            Projects
+          </Link>
+        </li>
+        <li>
+          <Link className={styles.LinkElements} href="contactMe/">
+            Contact Me
+          </Link>
+        </li>
+        <li>
+          <Link className={styles.LinkElements} href="resume/">
+            Resume
+          </Link>
+        </li>
+      </ul>
     </nav>
   );
 }

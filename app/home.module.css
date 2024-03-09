@@ -64,6 +64,23 @@
     text-wrap: pretty;
 }
 
+/* Contact Me */
+
+.formContainer{
+    width: 50%;
+    display: grid;
+    margin: auto;
+
+    color: white;
+    
+    gap: 30px;
+    
+}
+
+
+
+
+
 /* React PDF */
 
 .pageContainer{
