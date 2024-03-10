@@ -1,20 +1,12 @@
+"use client";
 import React from "react";
 import styles from "../home.module.css";
+import { createEmailTemplate } from "../components/actions";
 
 import { Form, Button, Row, Col } from "react-bootstrap";
-import emailTemplate from "../api/send/emalTemplate";
+
 
 export default function ContactMe() {
-  async function createEmailTemplate(formData: FormData) {
-    "use server";
-    const rawFormData = {
-      Name: formData.get("yourName"),
-      Company: formData.get("yourComp"),
-      Number: formData.get("yourNumber"),
-      Email: formData.get("yourEmail"),
-      Message: formData.get("yourMessage"),
-    };
-  }
   return (
     <main>
       <Form action={createEmailTemplate} className={styles.formContainer}>

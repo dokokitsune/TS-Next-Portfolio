@@ -6,7 +6,7 @@ import styles from "./layout.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/navbar";
 const inter = Inter({ subsets: ["latin"] });
-import "dotenv/config";
+import "dotenv/config"
 
 export const metadata: Metadata = {
   title: "Weston Wood",

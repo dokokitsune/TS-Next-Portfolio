@@ -20,7 +20,7 @@
     "dotenv": "^16.4.5",
     "fix-esm": "^1.0.1",
     "next": "14.1.0",
-    "nodemailer": "^6.9.10",
+    "nodemailer": "^6.9.12",
     "process": "^0.11.10",
     "react": "^18",
     "react-bootstrap": "^2.10.0",
