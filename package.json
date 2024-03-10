@@ -9,13 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-ses": "^3.529.1",
+    "@aws-sdk/credential-provider-node": "^3.529.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-pdf/renderer": "^3.3.8",
-    "aws-sdk": "^2.1567.0",
+    "aws-sdk": "^2.1574.0",
     "bootstrap": "^5.3.2",
     "dotenv": "^16.4.5",
     "fix-esm": "^1.0.1",
@@ -32,7 +34,7 @@
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "@types/node": "^20.11.19",
+    "@types/node": "^20.11.25",
     "@types/nodemailer": "^6.4.14",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18",
