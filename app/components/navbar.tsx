@@ -14,7 +14,7 @@ export default function Navbar() {
 
   // console.log(path);
   return (
-    <nav>
+    <nav className={styles.navSticky}>
       <ul className={styles.navBar}>
         <li>
           <Link

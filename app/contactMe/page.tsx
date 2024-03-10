@@ -8,7 +8,10 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 
 export default function ContactMe() {
   return (
-    <main>
+    <main >
+      
+      <h2 className={styles.contactTitle}>Contact Me</h2>
+
       <Form action={createEmailTemplate} className={styles.formContainer}>
         <Row>
           <Form.Group as={Col}>
