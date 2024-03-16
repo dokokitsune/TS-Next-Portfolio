@@ -10,7 +10,7 @@ export default function AboutMe() {
       <div className={styles.summary}>
         Hello there my name is Weston Wood and I am a Junior at California State University, Los Angeles (CalState LA).
         I am currently a Web Officer for the Association for Computing Machinery (ACM) club on campus.
-        I also work as a IT Student Assistent for CalState LA. 
+        I also work as a IT Student Assistant for CalState LA. 
         My goal after college is to either become a cloud engineer.
 
       </div>
