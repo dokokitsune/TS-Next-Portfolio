@@ -7,10 +7,10 @@
 }
 
 .navBar{
-    display: flex;
-    gap: 40px;
-    background-color: #1c1c1e;
     justify-content: end;
+    display: flex;
+    background-color: #1c1c1e !important;
+    gap: 40px;
     padding: 20px;
     text-decoration: none;
     list-style-type: none;
@@ -22,52 +22,35 @@
     padding-bottom: 10px;
     font-size:larger;
     text-decoration: none;
-    color: white;
+    color: white ;
     position: relative;
-    transition:  all 0.3s ease-in-out 0s;
-    display: block;
+    transition:  all 0.3s;
+    font-size: x-large;
     
 }
 
-.LinkElements:hover{
-    color: #029cd7
-}
-
-.LinkElements::after{
+.LinkElements::before{
     content: '';
-    width: 100%;
-    bottom: 0;
-    background-color: #029cd7;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: bottom left;
-    transition: transform 0.5s ease-out;
-    height: 5px;
-    box-sizing: border-box;
+    background-color: #007bff;
     position: absolute;
-    
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 0;
+    transition: 0.4s ease-in-out;
 }
 
-.LinkElements:hover::after{
-    transform: scale(0.4);
-    transform-origin: bottom left;
-    box-sizing: border-box
+.LinkElements:hover::before{
+    width: 40%;
 }
 
-.LinkElements:focus::after{
-    transform: scale(1);
-    transform-origin: bottom left;
-    box-sizing: border-box
-}  
-
-.LinkElements[class$="active"]::after{
-    transform: scaleX(1);
-  transform-origin: bottom left;
-  transition: transform 0.1s ease-out;
-  box-sizing: border-box
+.LinkElements[class*="active"]::before{
+    width: 100%;
 }
 
+/* scrollbar */
+.scroll::-webkit-scrollbar{
+   background-color: red;
 
-
-
+}
 

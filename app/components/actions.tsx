@@ -1,4 +1,5 @@
 "use server";
+import { usePathname } from "next/navigation";
 import { sendEmail } from "../api/send/route";
 
 export async function createEmailTemplate(formData: FormData) {
@@ -26,3 +27,4 @@ export async function createEmailTemplate(formData: FormData) {
     `</p>`;
     sendEmail(emailTemplate);
 }
+

@@ -1,10 +1,13 @@
-import React from "react";
+
+import * as React from 'react'
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import styles from "./layout.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./components/navbar";
+import LayoutNavbar from "./components/navbar";
+import Transitions from './components/transitions';
+
 const inter = Inter({ subsets: ["latin"] });
 
 
@@ -20,9 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body style={{ backgroundColor: "black" }} className={inter.className}>
-        <Navbar />
-        {children}
+      <body style={{ backgroundColor: "black" }} className={`${inter.className} ${styles.scroll} ` }>
+        <LayoutNavbar />
+
+          <main>{children}</main>
+        
+         
+         
         <footer />
       </body>
     </html>

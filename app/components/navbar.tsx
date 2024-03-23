@@ -4,45 +4,41 @@ import Link from "next/link";
 import styles from "../layout.module.css";
 import { usePathname } from "next/navigation";
 
-export default function Navbar() {
-  const [isActive, setIsActive] = useState("");
+
+// const IsActiveLink = (path:string) : boolean => {
+//   return usePathname() === path
+
+//  }
+
+export default function LayoutNavbar() {
+
   const path = usePathname();
 
-  useEffect(() => {
-    setIsActive(path);
-  }, [path]);
 
-  // console.log(path);
   return (
+
     <nav className={styles.navSticky}>
       <ul className={styles.navBar}>
         <li>
-          <Link
-            className={`${styles.LinkElements} ${
-              isActive === "/" ? "active" : ""
-            }`}
-            href="/"
-          >
-            Home
-          </Link>
+          <Link className={`${path === '/' ? 'active' : ''} ${styles.LinkElements}`} href='/'>Home</Link>
         </li>
         <li>
-          <Link className={styles.LinkElements} href="aboutMe/">
+          <Link className={`${path === '/aboutMe' ? 'active' : ''} ${styles.LinkElements}`} href="aboutMe/">
             About Me
           </Link>
         </li>
         <li>
-          <Link className={styles.LinkElements} href="projects/">
+          <Link className={`${path === '/projects' ? 'active' : ''} ${styles.LinkElements}`} href="projects/">
             Projects
           </Link>
         </li>
         <li>
-          <Link className={styles.LinkElements} href="contactMe/">
+          <Link className={`${path === '/contactMe' ? 'active' : ''} ${styles.LinkElements}`} href="contactMe/">
             Contact Me
           </Link>
         </li>
         <li>
-          <Link className={styles.LinkElements} href="resume/">
+          <Link className={`${path === '/resume' ? 'active' : ''} ${styles.LinkElements}`} href="resume/">
             Resume
           </Link>
         </li>
