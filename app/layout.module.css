@@ -1,8 +1,27 @@
+.layoutContainer{
+    background-color: black;
+    overflow-x: hidden;
+}
+
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    color: white;
+    font-size: 2em;
+
+}
+
 .navSticky{
     top: 0;
     left: 0;
     right: 0;
     position: sticky;
+    width: 100vw;
+    z-index: 1000;
 
 }
 
@@ -48,9 +67,5 @@
     width: 100%;
 }
 
-/* scrollbar */
-.scroll::-webkit-scrollbar{
-   background-color: red;
 
-}
 

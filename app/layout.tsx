@@ -1,12 +1,14 @@
 
 import * as React from 'react'
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import styles from "./layout.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LayoutNavbar from "./components/navbar";
-import Transitions from './components/transitions';
+import Loading from './loading';
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,14 +24,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body style={{ backgroundColor: "black" }} className={`${inter.className} ${styles.scroll} ` }>
-        <LayoutNavbar />
+    <html lang="en" >
+      <body  className={`${inter.className} ${styles.layoutContainer}`}>
+      <LayoutNavbar />
+      <Suspense fallback={<Loading />}>
+        
 
-          <main>{children}</main>
+          <main >{children}</main>
         
          
-         
+         </Suspense>
         <footer />
       </body>
     </html>

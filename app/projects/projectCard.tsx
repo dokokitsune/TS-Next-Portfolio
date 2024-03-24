@@ -23,8 +23,8 @@ export const ProjectCard: React.FC<projectProps> = ({ data }) => {
     Summary: "",
   });
   return (
-    <main style={{ padding: "0 5vw 0 10vw" }}>
-      <Row md={2} style={{ gap: "50px" }}>
+    <main className={styles.cardContainer}>
+      <Row md={2} className={styles.rowContainer}>
         {data &&
           data.map((e) => (
             <>
@@ -37,7 +37,7 @@ export const ProjectCard: React.FC<projectProps> = ({ data }) => {
               >
                 <Card.Body>
                   <Card.Title>{e.Title}</Card.Title>
-                  <Card.Img variant="top" src={e.imgUrl}></Card.Img>
+                  <Card.Img variant="top" alt="Project Img" src={e.imgUrl}></Card.Img>
                   <Card.Text>{e.Summary}</Card.Text>
                 </Card.Body>
               </Card>

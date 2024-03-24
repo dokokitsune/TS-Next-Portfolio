@@ -7,11 +7,11 @@ import { faLinkedin, faSquareGithub } from "@fortawesome/free-brands-svg-icons";
 
 export default function Home() {
   return (
-    <>
+    <main>
       <h1 className={styles.name}>Weston J. Wood</h1>
       <ReactTyped
         className={styles.reactTyped}
-        strings={["CSULA Junior", "ACM Web Officer", "IT Student Assistant"]}
+        strings={["CSULA Junior", "ACM Web Master", "IT Student Assistant"]}
         typeSpeed={40}
         backSpeed={50}
         loop
@@ -33,6 +33,6 @@ export default function Home() {
           className={styles.iconGithub}
         />
       </div>
-    </>
+    </main>
   );
 }

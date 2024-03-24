@@ -33,6 +33,7 @@ export function sendEmail(emailTemplate : string){
                 console.error(error)
             } else{
                 console.log('Email sent:', info.messageId)
+                window.alert('Email sent!')
             }
         }
     );
