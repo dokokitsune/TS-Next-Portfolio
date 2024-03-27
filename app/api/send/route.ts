@@ -18,24 +18,32 @@ const transporter = nodemailer.createTransport({
 })
 
 
-export function sendEmail(emailTemplate : string){
+export function sendEmail(emailTemplate : string):boolean{
     
-
+    let success = false;
     transporter.sendMail(
         {
             from: 'contact@wwoodportfolio.awsapps.com',
             to: 'wwood98@outlook.com',
-            subject: "Test Email",
+            subject: "Portfolio Form Response",
             html: emailTemplate,
         },
-        (error, info) => {
-            if(error){
-                console.error(error)
-            } else{
-                console.log('Email sent:', info.messageId)
-                window.alert('Email sent!')
+        (err, info) => {
+            if(err){
+                
+                console.log(err);
+                success = false;
+            }
+            else{
+                
+
+                console.log(info);
+                success = true;
             }
         }
-    );
 
+    );
+    return success;
+
+    
 }

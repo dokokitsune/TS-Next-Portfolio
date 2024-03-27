@@ -5,10 +5,7 @@ import styles from "../layout.module.css";
 import { usePathname } from "next/navigation";
 
 
-// const IsActiveLink = (path:string) : boolean => {
-//   return usePathname() === path
 
-//  }
 
 export default function LayoutNavbar() {
 

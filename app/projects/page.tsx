@@ -1,15 +1,17 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../home.module.css";
 import { ProjectCard } from "./projectCard";
-import AWS from "aws-sdk";
+
 import {
   DynamoDBClient,
-  ListTablesCommand,
-  QueryCommand,
+  ScanCommand,
 } from "@aws-sdk/client-dynamodb";
 
-import { DynamoDBDocumentClient, GetCommand } from "@aws-sdk/lib-dynamodb";
+import { DynamoDBDocumentClient} from "@aws-sdk/lib-dynamodb";
+import { unmarshall } from "@aws-sdk/util-dynamodb";
+
+
 
 const client = new DynamoDBClient({
   region: "us-west-2",
@@ -20,58 +22,87 @@ const client = new DynamoDBClient({
 });
 const doClient = DynamoDBDocumentClient.from(client);
 
-export interface tempProps {
-  imgUrl: string;
+export interface projectProps {
+  id: number;
+  imgUrls: string[];
   Title: string;
   Summary: string;
+  Description: string;
+  Skills: string[];
 }
 
-export default function Projects() {
-  const tempProject: tempProps[] = [
-    {
-      imgUrl: "/cardTestImg.png",
-      Title: "Project Title 1",
-      Summary: "Brief Description",
-    },
-    {
-      imgUrl: "/cardTestImg.png",
-      Title: "Project Title 2",
-      Summary: "Brief Description",
-    },
-    {
-      imgUrl: "/cardTestImg.png",
-      Title: "Project Title 3",
-      Summary: "Brief Description",
-    },
-    {
-      imgUrl: "/cardTestImg.png",
-      Title: "Project Title 4",
-      Summary: "Brief Description",
-    },
-    {
-      imgUrl: "/cardTestImg.png",
-      Title: "Project Title 5",
-      Summary: "Brief Description",
-    },
-  ];
+type projectArray = projectProps[];
 
+export default function Projects() {
+
+  const [Projects, setProjects] = useState<projectArray>([]);
+  useEffect(() => {
   const fetchData = async () => {
-    const command = new GetCommand({
+    const command = new ScanCommand({
       TableName: "projectsPortfolio",
-      Key: {
-        id: 0,
-      }
-    });
-    const response = await doClient.send(command);
+    
+    })
+    const resp= await client.send(command);
+    const projectArray: projectArray = [];
+    
+    if(resp.Items){
+      resp.Items.forEach((item) => {
+        const uProject : projectProps = {
+          id: 0,
+          imgUrls: [],
+          Title: "",
+          Summary: "",
+          Description: "",
+          Skills: []
+        };
+
+        const unMarshallItem = unmarshall(item)
+        uProject["Title"] = unMarshallItem.title;
+        uProject["Skills"] = Array.from(unMarshallItem.skills)
+        uProject["id"] = unMarshallItem.id;
+        uProject["imgUrls"] = Array.from(unMarshallItem.pictures);
+        uProject["Summary"] = unMarshallItem.sum;
+        uProject["Description"] = unMarshallItem.desc;
+        projectArray.push(uProject);
+        
+        
+      })
+      
+    }
+    
+
+      setProjects(projectArray);
+   
+     
+    
+    
     
   };
+  
+    fetchData();
+  }, [])
+  
 
-  fetchData();
+
+
+  
+  
+ 
+  
+
+
+
+  
+
+
+
+
+ 
 
   return (
     <main className={styles.projectContainer}>
       <h1 style={{ padding: "50px 0 50px 0" }}>My Projects</h1>
-      <ProjectCard data={tempProject} />
+      <ProjectCard data={Projects} />
     </main>
   );
 }

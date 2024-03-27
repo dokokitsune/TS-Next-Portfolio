@@ -1,27 +1,30 @@
 import { Card, Row } from "react-bootstrap";
-import { tempProps } from "./page";
+import { projectProps } from "./page";
 import React, { useState } from "react";
 import styles from "../home.module.css";
 import { ProjectModal } from "./projectModal";
 
-interface projectProps {
-  data: tempProps[];
+interface localProjectProps {
+  data: projectProps[];
 }
 
 export interface modalProps {
   show: boolean;
   onHide: () => void;
-  data: tempProps;
-  imgUrl: string;
+  data: projectProps;
 }
 
-export const ProjectCard: React.FC<projectProps> = ({ data }) => {
+export const ProjectCard: React.FC<localProjectProps> = ({ data }) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [selected, setSelected] = useState<tempProps>({
-    imgUrl: "",
+  const [selected, setSelected] = useState<projectProps>({
+    id: 0,
+    imgUrls: [],
     Title: "",
     Summary: "",
+    Description: "",
+    Skills: []
   });
+  console.log(selected.imgUrls[0])
   return (
     <main className={styles.cardContainer}>
       <Row md={2} className={styles.rowContainer}>
@@ -37,8 +40,9 @@ export const ProjectCard: React.FC<projectProps> = ({ data }) => {
               >
                 <Card.Body>
                   <Card.Title>{e.Title}</Card.Title>
-                  <Card.Img variant="top" alt="Project Img" src={e.imgUrl}></Card.Img>
-                  <Card.Text>{e.Summary}</Card.Text>
+                  <Card.Img variant="top" alt="Project Img" src={e.imgUrls[0]}></Card.Img>
+                  
+                  <Card.Text><p style={{fontSize: 'larger'}} className="mt-4">{e.Summary}</p></Card.Text>
                 </Card.Body>
               </Card>
             </>
@@ -48,7 +52,7 @@ export const ProjectCard: React.FC<projectProps> = ({ data }) => {
             show={openModal}
             onHide={() => setOpenModal(false)}
             data={selected}
-            imgUrl={selected.imgUrl}
+            
           />
         </>
       </Row>
