@@ -1,12 +1,15 @@
 import nodemailer from "nodemailer";
 import * as aws from '@aws-sdk/client-ses'
 
+
+
+
 const ses = new aws.SES({
     apiVersion: "2012-10-17",
     region: "us-west-2",
     credentials: {
-        accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID!,
-        secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY!,
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!
 
     }
     
@@ -18,7 +21,7 @@ const transporter = nodemailer.createTransport({
 })
 
 
-export function sendEmail(emailTemplate : string):boolean{
+export async function sendEmail(emailTemplate : string): Promise<boolean> {
     
     let success = false;
     transporter.sendMail(

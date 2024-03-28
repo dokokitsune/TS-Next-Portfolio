@@ -17,7 +17,7 @@ const client = new DynamoDBClient({
   region: "us-west-2",
   credentials: {
     accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY!,
+    secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY!
   },
 });
 const doClient = DynamoDBDocumentClient.from(client);

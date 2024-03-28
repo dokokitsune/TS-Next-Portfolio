@@ -12,13 +12,13 @@ export default function ContactMe() {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      window.alert("Email Sent!")
       const formData = new FormData(e.currentTarget);
       if (await createEmailTemplate(formData)) {
         console.log("Email Sent!");
         window.alert("Email Sent!") 
       } else {
-        <Alert variant="danger">Email Failed to Send</Alert>;
+        
+        window.alert("Email Failed to Send")
       }
       window.location.reload();
       

@@ -1,6 +1,6 @@
 "use server";
 import { Alert } from "react-bootstrap";
-import { sendEmail } from "../api/send/route";
+import { sendEmail } from "../api/send/sendEmail";
 import { send } from "process";
 
 export async function createEmailTemplate(formData: FormData): Promise<boolean>{
@@ -26,7 +26,7 @@ export async function createEmailTemplate(formData: FormData): Promise<boolean>{
   <p>` +
     rawFormData.Message +
     `</p>`;
-    if(sendEmail(emailTemplate)){
+    if(await sendEmail(emailTemplate)){
       return true;
     };
     return false;
