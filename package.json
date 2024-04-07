@@ -11,7 +11,7 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.533.0",
     "@aws-sdk/client-ses": "^3.529.1",
-    "@aws-sdk/credential-provider-node": "^3.529.1",
+    "@aws-sdk/credential-provider-node": "^3.549.0",
     "@aws-sdk/credential-providers": "^3.533.0",
     "@aws-sdk/lib-dynamodb": "^3.533.0",
     "@aws-sdk/util-dynamodb": "^3.533.0",
@@ -48,5 +48,6 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "typescript": "^5"
-  }
+  },
+  "author": "Weston Wood"
 }

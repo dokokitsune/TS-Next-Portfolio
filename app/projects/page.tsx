@@ -3,24 +3,10 @@ import React, { useEffect, useState } from "react";
 import styles from "../home.module.css";
 import { ProjectCard } from "./projectCard";
 
-import {
-  DynamoDBClient,
-  ScanCommand,
-} from "@aws-sdk/client-dynamodb";
-
-import { DynamoDBDocumentClient} from "@aws-sdk/lib-dynamodb";
+import { getProjects } from "../api/aws/database";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 
 
-
-const client = new DynamoDBClient({
-  region: "us-west-2",
-  credentials: {
-    accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY!
-  },
-});
-const doClient = DynamoDBDocumentClient.from(client);
 
 export interface projectProps {
   id: number;
@@ -38,15 +24,12 @@ export default function Projects() {
   const [Projects, setProjects] = useState<projectArray>([]);
   useEffect(() => {
   const fetchData = async () => {
-    const command = new ScanCommand({
-      TableName: "projectsPortfolio",
+    const projects = await getProjects();
     
-    })
-    const resp= await client.send(command);
     const projectArray: projectArray = [];
     
-    if(resp.Items){
-      resp.Items.forEach((item) => {
+    if(projects.Items){
+      projects.Items.forEach((item) => {
         const uProject : projectProps = {
           id: 0,
           imgUrls: [],

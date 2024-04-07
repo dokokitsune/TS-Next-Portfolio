@@ -1,9 +1,8 @@
 "use server";
-import { Alert } from "react-bootstrap";
 import { sendEmail } from "../api/send/sendEmail";
-import { send } from "process";
 
-export async function createEmailTemplate(formData: FormData): Promise<boolean>{
+
+export async function createEmailTemplate(formData: FormData){
   const rawFormData = {
     Name: formData.get("yourName"),
     Company: formData.get("yourComp"),
@@ -13,7 +12,7 @@ export async function createEmailTemplate(formData: FormData): Promise<boolean>{
   };
 
   const emailTemplate: string =
-    `<h1>Contact Me Form Response from ` +
+    `<h1>Form Response from ` +
     rawFormData.Company +
     `</h1> \
   <h4>Name: ` +
@@ -26,9 +25,11 @@ export async function createEmailTemplate(formData: FormData): Promise<boolean>{
   <p>` +
     rawFormData.Message +
     `</p>`;
-    if(await sendEmail(emailTemplate)){
-      return true;
-    };
-    return false;
+    
+
+    sendEmail(emailTemplate)
+
+   
+
 }
 

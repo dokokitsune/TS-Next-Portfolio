@@ -3,7 +3,7 @@ import React, { FormEvent, useEffect } from "react";
 import styles from "../home.module.css";
 import { createEmailTemplate } from "../components/actions";
 
-import { Form, Button, Row, Col, Alert } from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 
 
 
@@ -13,14 +13,8 @@ export default function ContactMe() {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const formData = new FormData(e.currentTarget);
-      if (await createEmailTemplate(formData)) {
-        console.log("Email Sent!");
-        window.alert("Email Sent!") 
-      } else {
-        
-        window.alert("Email Failed to Send")
-      }
-      window.location.reload();
+      createEmailTemplate(formData);
+     // window.location.reload();
       
     }
     
