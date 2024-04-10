@@ -10,6 +10,8 @@
 /coverage
 /.cert
 
+ecosystem.config.js
+
 # next.js
 /.next/
 /out/

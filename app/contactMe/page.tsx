@@ -7,16 +7,23 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 
 
 
+
 export default function ContactMe() {
 
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const formData = new FormData(e.currentTarget);
-      createEmailTemplate(formData);
-     // window.location.reload();
+      if(await createEmailTemplate(formData)){
+        window.alert("Email Sent!")
+        window.location.reload();
+      }
+      else{
+        window.alert("Email Failed to send")
+      }
       
     }
+
     
 
   return (

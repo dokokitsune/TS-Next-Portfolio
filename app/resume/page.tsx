@@ -1,6 +1,5 @@
 "use client"
-import dynamic from 'next/dynamic'
-import React, { useState } from 'react'
+import React from 'react'
 import styles from '../home.module.css'
 
 
@@ -8,9 +7,6 @@ import styles from '../home.module.css'
 
 
 export default function Resume() {
-
-
-
 
   return (
     <div className={styles.pageContainer}>

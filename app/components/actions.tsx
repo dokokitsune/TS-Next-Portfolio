@@ -2,7 +2,7 @@
 import { sendEmail } from "../api/send/sendEmail";
 
 
-export async function createEmailTemplate(formData: FormData){
+export async function createEmailTemplate(formData: FormData) : Promise<boolean>{
   const rawFormData = {
     Name: formData.get("yourName"),
     Company: formData.get("yourComp"),
@@ -27,9 +27,14 @@ export async function createEmailTemplate(formData: FormData){
     `</p>`;
     
 
-    sendEmail(emailTemplate)
+    if(await sendEmail(emailTemplate)){
+      Promise.resolve(true)
+      return true;
+      
+    }
+    return false;
 
-   
+    
 
 }
 

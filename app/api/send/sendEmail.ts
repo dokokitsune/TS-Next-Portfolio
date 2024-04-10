@@ -1,4 +1,6 @@
-import nodemailer from "nodemailer";
+
+"use server";
+
 import {SESClient, SendEmailCommand} from '@aws-sdk/client-ses'
 
 
@@ -43,16 +45,25 @@ const sendEmailCommand = (bodyData: string) => {
     })
 }
 
-export async function sendEmail(emailTemplate: string){
-    try{
-        return await ses.send(sendEmailCommand(emailTemplate));
-    }
-    catch(err){
-        console.error("failed to send email")
-        console.log(err)
-        return err;
-    }
+export async function sendEmail(emailTemplate: string): Promise<boolean>{
+    
+    ses.send(sendEmailCommand(emailTemplate), (err, data) => {
+        if(err){
+            
+            return false;
+            
+        }else{
+            console.log(data);
+            return true;
+            
+            
+        }
+    })
+
+    return true;
 }
+    
+
 
 // const transporter = nodemailer.createTransport({
 //     SES: {ses, aws}
