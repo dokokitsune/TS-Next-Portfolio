@@ -40,7 +40,9 @@ export default function LayoutNavbar() {
 					<Nav className="ms-auto" >
 						{links.map((item) => (
 
-							<Nav.Link as="div">	<Link className={`${path === item.hrefQuery ? 'active' : ''} ${styles.LinkElements}`} href={item.href}>{item.label}</Link></Nav.Link>
+							<Nav.Link as="div" key={item.href}>
+								<Link className={`${path === item.hrefQuery ? 'active' : ''} ${styles.LinkElements}`} href={item.href}>{item.label}</Link>
+							</Nav.Link>
 						))}
 					</Nav>
 				</Navbar.Collapse>

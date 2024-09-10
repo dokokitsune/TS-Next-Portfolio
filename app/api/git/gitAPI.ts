@@ -27,8 +27,8 @@ export interface gitResponse {
 	latestCommit: latestCommit
 }
 
-function getColorLang(lang: string): string | undefined {
-	return langColors[lang]
+function getColorLang(lang: string | null | undefined): string | undefined {
+	return lang ? langColors[lang] : undefined;
 }
 
 function getShortMessage(fullMessage: string): string {
@@ -105,7 +105,7 @@ export default async function fetchGitData() {
 		const commitData = commitList.data.at(0)
 		const commitDate: any = commitData?.commit.committer?.date
 
-		const fullMessage: string = commitData?.commit.message
+		const fullMessage: string = commitData?.commit.message || ""
 		let shortedMessage
 		if (fullMessage.includes('\n')) {
 			shortedMessage = getShortMessage(fullMessage)
@@ -127,7 +127,7 @@ export default async function fetchGitData() {
 			id: repos.id,
 			name: repos.name,
 			html_url: repos.html_url,
-			language: repos.language,
+			language: repos.language || undefined,
 			languageColor: getColorLang(repos.language),
 			latestCommit: commitEntry
 		}

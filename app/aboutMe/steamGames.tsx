@@ -41,7 +41,7 @@ const SteamCard: React.FC<localGamesProps> = ({ data }) => {
 										{e.recentAchevements.map((a) =>
 											<li key={e.appId}>
 												<div className={styles.achievements}>
-													<Image src={a.imgUrl} alt="Pic Not Found" width={50} height={50} />
+													<Image src={a.imgUrl || ""} alt="Pic Not Found" width={50} height={50} />
 													<p className={styles.achievementItem}>{a.name}</p>
 												</div>
 

@@ -6,8 +6,8 @@ import { SteamRecentPlayedGames, SteamGetPlayerAchivements, SteamGetSchemaForGam
 
 
 interface Achevement {
-	name: string,
-	imgUrl: string,
+	name: string | undefined,
+	imgUrl: string | undefined,
 	globalPercentage: number
 }
 
