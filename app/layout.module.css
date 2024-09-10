@@ -1,71 +1,60 @@
-.layoutContainer{
-    background-color: black;
-    overflow-x: hidden;
+.layoutContainer {
+	background-color: black;
+	overflow-x: hidden;
 }
 
-.loading{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background-color: black;
-    color: white;
-    font-size: 2em;
-
-}
-
-.navSticky{
-    top: 0;
-    left: 0;
-    right: 0;
-    position: sticky;
-    width: 100vw;
-    z-index: 1000;
+.loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100vw;
+	background-color: black;
+	color: white;
+	font-size: 2em;
 
 }
 
-.navBar{
-    justify-content: end;
-    display: flex;
-    background-color: #1c1c1e !important;
-    gap: 40px;
-    padding: 20px;
-    text-decoration: none;
-    list-style-type: none;
-    
+.navBar {
+	background-color: #1c1c1e !important;
+	padding: 20px;
+	text-decoration: none;
 }
 
-.LinkElements{
-    font-family: 'IBM Plex Serif';
-    padding-bottom: 10px;
-    font-size:larger;
-    text-decoration: none;
-    color: white ;
-    position: relative;
-    transition:  all 0.3s;
-    font-size: x-large;
-    
+.hamButton {
+	color: white;
 }
 
-.LinkElements::before{
-    content: '';
-    background-color: #007bff;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 3px;
-    width: 0;
-    transition: 0.4s ease-in-out;
+.navElements {
+	text-align: end;
 }
 
-.LinkElements:hover::before{
-    width: 40%;
+.LinkElements {
+	padding-bottom: 10px;
+	font-size: larger;
+	text-decoration: none;
+	color: white;
+	position: relative;
+	transition: all 0.3s;
+	font-size: x-large;
+
 }
 
-.LinkElements[class*="active"]::before{
-    width: 100%;
+.LinkElements::before {
+	content: '';
+	background-color: #007bff;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 3px;
+	width: 0;
+	transition: 0.4s ease-in-out;
 }
 
+.LinkElements:hover::before {
+	width: 40%;
+}
 
-
+.LinkElements[class*="active"]::before {
+	width: 100%;
+}

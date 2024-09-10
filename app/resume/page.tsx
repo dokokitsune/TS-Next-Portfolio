@@ -8,9 +8,9 @@ import styles from '../home.module.css'
 
 export default function Resume() {
 
-  return (
-    <div className={styles.pageContainer}>
-      <iframe className={styles.page} src='/pdfs/Tech Resume.pdf' />
-    </div>
-  )
+	return (
+		<div className={styles.pageContainer}>
+			<iframe className={styles.page} src='/pdfs/Tech Resume.pdf#toolbar=0' />
+		</div>
+	)
 }

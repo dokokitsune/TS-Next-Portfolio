@@ -11,89 +11,89 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 export default function ContactMe() {
 
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      const formData = new FormData(e.currentTarget);
-      if(await createEmailTemplate(formData)){
-        window.alert("Email Sent!")
-        window.location.reload();
-      }
-      else{
-        window.alert("Email Failed to send")
-      }
-      
-    }
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		const formData = new FormData(e.currentTarget);
+		if (await createEmailTemplate(formData)) {
+			window.alert("Email Sent!")
+			window.location.reload();
+		}
+		else {
+			window.alert("Email Failed to send")
+		}
 
-    
+	}
 
-  return (
-    <main >
-      
-      <h2 className={styles.contactTitle}>Contact Me</h2>
 
-      <Form onSubmit={handleSubmit}  className={styles.formContainer}>
-        <Row>
-          <Form.Group as={Col}>
-            <Form.Label>Name</Form.Label>
-            <Form.Control required type="text" placeholder="Your Name" name="yourName" />
 
-          </Form.Group>
+	return (
+		<main>
 
-          <Form.Group as={Col}>
-            <Form.Label>Company</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Your Company Name"
-              name="yourComp"
-            />
-          </Form.Group>
-        </Row>
+			<h2 className={styles.contactTitle}>Contact Me</h2>
 
-        <Row>
-          <Form.Group as={Col}>
-            <Form.Label>Phone Number</Form.Label>
-            <Form.Control
-              type="tel"
-              placeholder="Your Phone Number"
-              name="yourNumber"
-              
-            />
-          </Form.Group>
-          <Form.Group as={Col}>
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              required
-              placeholder="Your Email"
-              name="yourEmail"
-            />
-          </Form.Group>
-        </Row>
+			<Form onSubmit={handleSubmit} className={styles.formContainer}>
+				<div className={styles.contactRows}>
+					<Form.Group as={Col}>
+						<Form.Label>Name</Form.Label>
+						<Form.Control required type="text" placeholder="Your Name" name="yourName" />
 
-        <Form.Group>
-          <Form.Label>Message</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={4}
-            required
-            placeholder="Your Message"
-            name="yourMessage"
-          />
-        </Form.Group>
+					</Form.Group>
 
-        <Button
-          type="submit"
-          style={{
-            width: "100px",
-            position: "relative",
-            alignContent: "end",
-          }}
-          
-          
-        >
-          Submit
-        </Button>
-      </Form>
-    </main>
-  );
+					<Form.Group as={Col}>
+						<Form.Label>Company</Form.Label>
+						<Form.Control
+							type="text"
+							placeholder="Your Company Name"
+							name="yourComp"
+						/>
+					</Form.Group>
+				</div>
+
+				<div className={styles.contactRows}>
+					<Form.Group as={Col}>
+						<Form.Label>Phone Number</Form.Label>
+						<Form.Control
+							type="tel"
+							placeholder="Your Phone Number"
+							name="yourNumber"
+
+						/>
+					</Form.Group>
+					<Form.Group as={Col}>
+						<Form.Label>Email</Form.Label>
+						<Form.Control
+							type="email"
+							required
+							placeholder="Your Email"
+							name="yourEmail"
+						/>
+					</Form.Group>
+				</div>
+
+				<Form.Group>
+					<Form.Label>Message</Form.Label>
+					<Form.Control
+						as="textarea"
+						rows={4}
+						required
+						placeholder="Your Message"
+						name="yourMessage"
+					/>
+				</Form.Group>
+
+				<Button
+					type="submit"
+					style={{
+						width: "100px",
+						position: "relative",
+						alignContent: "end",
+					}}
+
+
+				>
+					Submit
+				</Button>
+			</Form>
+		</main>
+	);
 }
