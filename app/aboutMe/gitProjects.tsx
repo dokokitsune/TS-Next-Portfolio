@@ -23,7 +23,7 @@ const GitCard: React.FC<localProjectProps> = ({ data }) => {
 									<p className={styles.langText}>{e.language}</p>
 								</div>
 							</div>
-							<p className={styles.gitCommitMessage}>&ldquo{e.latestCommit.message}&rdquo</p>
+							<p className={styles.gitCommitMessage}>&ldquo;{e.latestCommit.message}&rdquo;</p>
 						</Card.Body>
 						<Card.Footer className={styles.gitFooter}>Last Commit: {e.latestCommit.date}</Card.Footer>
 
