@@ -12,13 +12,17 @@ interface localGamesProps {
 //TODO
 //Make it so that it adds a comma to hours if above 3 digits
 const timeFormat = (hour: number, minute: number) => {
+	const formatNumber = (num: number) => {
+		return num >= 1000 ? num.toLocaleString() : num.toString();
+	};
+
 	if (hour === 0) {
-		return `${minute} minute${minute !== 1 ? 's' : ''}`
+		return `${formatNumber(minute)} minute${minute !== 1 ? 's' : ''}`;
+	} else if (minute === 0) {
+		return `${formatNumber(hour)} hour${hour !== 1 ? 's' : ''}`;
+	} else {
+		return `${formatNumber(hour)} hour${hour !== 1 ? 's' : ''} ${formatNumber(minute)} minute${minute !== 1 ? 's' : ''}`;
 	}
-	else if (minute === 0) {
-		return `${hour} hour${hour !== 1 ? 's' : ''}`
-	}
-	else return `${hour} hour${hour !== 1 ? 's' : ''} ${minute} minute${minute !== 1 ? 's' : ''}`
 }
 //TODO 
 //Some times achievements duplicate and overflow
