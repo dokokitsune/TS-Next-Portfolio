@@ -255,7 +255,7 @@
 .page {
 	width: 60vw;
 	height: 90vh;
-	translate: 0 10vh;
+	margin-top: 10vh;
 }
 
 @media only screen and (max-width: 600px) {
@@ -281,7 +281,7 @@
 	}
 
 	.page {
-		translate: 0 25vh;
+
 		height: 60vh;
 		width: 800vw;
 	}
