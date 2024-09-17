@@ -1,5 +1,4 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "../home.module.css";
 import { ProjectCard } from "./projectCard";
 
@@ -19,57 +18,36 @@ export interface projectProps {
 
 type projectArray = projectProps[];
 
-export default function Projects() {
+export default async function Projects() {
 
-	const [Projects, setProjects] = useState<projectArray>([]);
-	useEffect(() => {
-		const fetchData = async () => {
-			const projects = await getProjects();
+	const projects = await getProjects();
 
-			const projectArray: projectArray = [];
+	const projectArray: projectArray = [];
 
-			if (projects.Items) {
-				projects.Items.forEach((item) => {
-					const uProject: projectProps = {
-						id: 0,
-						imgUrls: [],
-						Title: "",
-						Summary: "",
-						Description: "",
-						Skills: []
-					};
-
-					const unMarshallItem = unmarshall(item)
-					uProject["Title"] = unMarshallItem.title;
-					uProject["Skills"] = Array.from(unMarshallItem.skills)
-					uProject["id"] = unMarshallItem.id;
-					uProject["imgUrls"] = Array.from(unMarshallItem.pictures);
-					uProject["Summary"] = unMarshallItem.sum;
-					uProject["Description"] = unMarshallItem.desc;
-					projectArray.push(uProject);
+	if (projects.Items) {
+		projects.Items.forEach((item) => {
 
 
-				})
+			const unMarshallItem = unmarshall(item)
+			const uProject: projectProps = {
+				Title: unMarshallItem.title,
+				Skills: Array.from(unMarshallItem.skills),
+				id: unMarshallItem.id,
+				imgUrls: Array.from(unMarshallItem.pictures),
+				Summary: unMarshallItem.sum,
+				Description: unMarshallItem.desc,
+
 
 			}
+			projectArray.push(uProject)
 
+		})
 
-			setProjects(projectArray);
-
-
-
-
-
-		};
-
-		fetchData();
-	}, [])
-
-
+	}
 
 	return (
 		<main className={styles.projectContainer}>
-			<ProjectCard data={Projects} />
+			<ProjectCard data={projectArray} />
 		</main>
 	);
-}
+};
