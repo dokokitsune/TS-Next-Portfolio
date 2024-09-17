@@ -69,7 +69,6 @@ export default function Projects() {
 
 	return (
 		<main className={styles.projectContainer}>
-			<h1 style={{ padding: "25px 0 25px 0" }}>My Projects</h1>
 			<ProjectCard data={Projects} />
 		</main>
 	);
