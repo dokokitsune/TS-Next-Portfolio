@@ -1,7 +1,7 @@
 import React from 'react'
-import { Game, recentPlayedGames } from "../api/steam/steamAPI"
+import { Game, recentPlayedGames } from "../lib/steam/steamAPI"
 import AboutMeClient from './aboutMeClient'
-import fetchGitData from '../api/git/gitAPI'
+import fetchGitData from '../lib/git/gitAPI'
 
 type Games = Game[]
 

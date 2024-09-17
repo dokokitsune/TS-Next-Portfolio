@@ -1,6 +1,6 @@
 "use client"
 import { Card, Row } from "react-bootstrap";
-import { Game } from "../api/steam/steamAPI";
+import { Game } from "../lib/steam/steamAPI";
 import Image from "next/image";
 import React from "react";
 

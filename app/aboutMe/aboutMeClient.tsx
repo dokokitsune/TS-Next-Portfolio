@@ -2,10 +2,9 @@
 import React from 'react'
 import styles from '../home.module.css'
 import { Card, Container } from 'react-bootstrap'
-import Image from 'next/image'
-import { Game } from "../api/steam/steamAPI"
+import { Game } from "../lib/steam/steamAPI"
 import SteamCard from './steamGames'
-import { gitResponse } from '../api/git/gitAPI'
+import { gitResponse } from '../lib/git/gitAPI'
 import GitCard from './gitProjects'
 
 type Games = Game[]
