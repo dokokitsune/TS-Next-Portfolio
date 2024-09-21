@@ -1,5 +1,5 @@
 "use client"
-import { Card, Row } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Game } from "../lib/steam/steamAPI";
 import Image from "next/image";
 import React from "react";
@@ -9,8 +9,7 @@ import styles from "../home.module.css"
 interface localGamesProps {
 	data: Game[];
 }
-//TODO
-//Make it so that it adds a comma to hours if above 3 digits
+
 const timeFormat = (hour: number, minute: number) => {
 	const formatNumber = (num: number) => {
 		return num >= 1000 ? num.toLocaleString() : num.toString();
@@ -24,8 +23,7 @@ const timeFormat = (hour: number, minute: number) => {
 		return `${formatNumber(hour)} hour${hour !== 1 ? 's' : ''} ${formatNumber(minute)} minute${minute !== 1 ? 's' : ''}`;
 	}
 }
-//TODO 
-//Some times achievements duplicate and overflow
+
 const SteamCard: React.FC<localGamesProps> = ({ data }) => {
 
 	return (

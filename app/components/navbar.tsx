@@ -36,7 +36,7 @@ export default function LayoutNavbar() {
 		<>
 
 			<Navbar className={styles.navBar} expand="lg" fixed="top" expanded={expanded} variant="dark" >
-				<Navbar.Brand href="/">Weston J. Wood</Navbar.Brand>
+				<Navbar.Brand href="/" style={{ margin: "5px" }}>Weston J. Wood</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={() => setExpanded(!expanded)} >
 					<div className="bs-emphasis-color me-auto">
 						<FaBars />
