@@ -1,5 +1,6 @@
 import gitColors from './gitColors.json'
 
+
 import { Octokit } from "@octokit/rest"
 
 type colorMapping = { [key: string]: string }

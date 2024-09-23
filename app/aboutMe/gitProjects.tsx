@@ -1,6 +1,6 @@
 import React from "react"
 import { gitResponse } from "../lib/git/gitAPI"
-import { Card, Row } from "react-bootstrap"
+import { Card } from "react-bootstrap"
 import styles from "../home.module.css"
 
 interface localProjectProps {
