@@ -1,26 +1,28 @@
 import React from 'react'
-import { Game, recentPlayedGames } from "../lib/steam/steamAPI"
 import AboutMeClient from './aboutMeClient'
-import fetchGitData from '../lib/git/gitAPI'
-
-type Games = Game[]
 
 
-export const revalidate = 3600
 
-async function getGames(): Promise<Games> {
-	return await recentPlayedGames()
+
+interface apiData {
+	data: []
 }
 
-async function getProjects() {
-	return await fetchGitData()
-}
+
 
 export default async function AboutMePage() {
-	const steamGames = await getGames()
-	const gitProjects = await getProjects()
+	const [gamesRes, projectsRes] = await Promise.all([
+		fetch('https://wwoodportfolio.com/api/games', { cache: "no-store" }),
+		fetch('https://wwoodportfolio.com/api/projects', { cache: "no-store" })
+	])
+
+	const [steamGames, gitProjects]: apiData[] = await Promise.all([
+		gamesRes.json(),
+		projectsRes.json()
+
+	])
 	return (<>
-		<AboutMeClient initialGames={steamGames} initialProjects={gitProjects} />
+		<AboutMeClient initialGames={steamGames.data} initialProjects={gitProjects.data} />
 
 	</>)
 }

@@ -29,7 +29,7 @@ const appPoster = ((appid: string) => { return `https://steamcdn-a.akamaihd.net/
 
 export async function recentPlayedGames<T>(): Promise<T> {
 	const url = `https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/?key=${process.env.STEAM_KEY!}&steamid=${process.env.STEAM_USER_ID!}&count=3`
-	const data = await fetch(url, { method: 'GET' })
+	const data = await fetch(url, { method: 'GET', cache: "no-cache" })
 	if (!data.ok) {
 		throw new Error(data.statusText)
 	}
@@ -68,7 +68,7 @@ export async function recentPlayedGames<T>(): Promise<T> {
 //Fetchs basic achevement list. (only shows if unlocked, when and api name)
 async function fetchAchivedAchivements(appId: string): Promise<SteamGetPlayerAchivements> {
 	const url = `https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?appid=${appId}&key=${process.env.STEAM_KEY!}&steamid=${process.env.STEAM_USER_ID!}`
-	const data = await fetch(url, { method: 'GET' })
+	const data = await fetch(url, { method: 'GET', cache: "no-cache" })
 	const steamData: SteamGetPlayerAchivements = await data.json()
 	//needs logic to sort by most recently achived
 	return steamData
@@ -78,7 +78,7 @@ async function fetchAchivedAchivements(appId: string): Promise<SteamGetPlayerAch
 //Fetchs advanced achevment list. (apiname, displayName, description, icon and icongrey)
 async function fetchAllAchivements(appId: string): Promise<SteamGetSchemaForGame> {
 	const url = `https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?appid=${appId}&key=${process.env.STEAM_KEY}`
-	const fetchData = await fetch(url, { method: 'GET' })
+	const fetchData = await fetch(url, { method: 'GET', cache: "no-cache" })
 	const jsonData: SteamGetSchemaForGame = await fetchData.json()
 
 	//needs logic mainly used to retrive icons and maybe display names for acivements
