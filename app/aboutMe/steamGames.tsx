@@ -30,7 +30,7 @@ const SteamCard: React.FC<localGamesProps> = ({ data }) => {
 		<div className={styles.steamContainer}>
 
 			{data && data.map((e) =>
-				<Card style={{ backgroundColor: "#1c1c1c", color: "white" }}>
+				<Card key={e.appId} style={{ backgroundColor: "#1c1c1c", color: "white" }}>
 					<Card.Body className={styles.steamCardContianer}>
 						<div className={styles.steamBody}>
 							<Card.Title style={{ textAlign: "center" }}>
@@ -44,8 +44,8 @@ const SteamCard: React.FC<localGamesProps> = ({ data }) => {
 								<ul className={styles.achievementsList}>
 									<li style={{ fontSize: "1.25em" }}><u>Recent Achievements</u></li>
 									{e.recentAchevements.length > 0 ? (
-										e.recentAchevements.map((a) =>
-											<li key={e.appId}>
+										e.recentAchevements.map((a, index) =>
+											<li key={`${e.appId}-achievement-${index}`}>
 												<div className={styles.achievements}>
 													<Image src={a.imgUrl || ""} alt="Pic Not Found" width={50} height={50} />
 													<p className={styles.achievementItem}>{a.name}</p>
