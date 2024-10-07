@@ -1,9 +1,6 @@
 import React from 'react'
 import AboutMeClient from './aboutMeClient'
 
-
-
-
 interface apiData {
 	data: []
 }
@@ -11,6 +8,9 @@ interface apiData {
 
 
 export default async function AboutMePage() {
+
+
+
 	const [gamesRes, projectsRes] = await Promise.all([
 		fetch('https://wwoodportfolio.com/api/games', { cache: "no-store" }),
 		fetch('https://wwoodportfolio.com/api/projects', { cache: "no-store" })

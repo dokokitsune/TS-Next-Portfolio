@@ -86,9 +86,14 @@ async function fetchAllAchivements(appId: string): Promise<SteamGetSchemaForGame
 }
 
 async function assembleRecentAchievments(appid: string) {
+	type exportAchData = Achevement[]
+	const achArray: exportAchData = []
+
 	const achivedAchivements: SteamGetPlayerAchivements = await fetchAchivedAchivements(appid)
 	const detaildAchivements: SteamGetSchemaForGame = await fetchAllAchivements(appid)
-
+	if (achivedAchivements.playerstats.success == false) {
+		return achArray
+	}
 	const achivedArr = achivedAchivements.playerstats.achievements
 	const recentAchArr = achivedArr.sort((a, b) => b.unlocktime - a.unlocktime)
 
@@ -96,9 +101,7 @@ async function assembleRecentAchievments(appid: string) {
 
 	const gameStats = detaildAchivements.game.availableGameStats.achievements
 
-	type exportAchData = Achevement[]
 
-	const achArray: exportAchData = []
 
 
 

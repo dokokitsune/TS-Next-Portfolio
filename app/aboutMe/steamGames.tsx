@@ -28,40 +28,39 @@ const SteamCard: React.FC<localGamesProps> = ({ data }) => {
 
 	return (
 		<div className={styles.steamContainer}>
-			{data && data.map((e) =>
-				<>
-					<Card style={{ backgroundColor: "#1c1c1c", color: "white" }}>
-						<Card.Body className={styles.steamCardContianer}  >
-							<div className={styles.steamBody}>
-								<Card.Title style={{ textAlign: "center" }}><a href={e.storePageUrl} target="_blank">{e.title}</a></Card.Title>
-								<div style={{ textAlign: "center", marginBottom: "5px" }}>Playtime: {timeFormat(e.playHour, e.playMinutes)}</div>
-								<div className={styles.gameCard}>
-									<Image src={e.flyer} alt="Flyer Not Found" width={150} height={226} />
 
-									<ul className={styles.achievementsList}>
-										<li style={{ fontSize: "1.25em" }}><u>Recent Achivements</u></li>
-										{e.recentAchevements.map((a) =>
+			{data && data.map((e) =>
+				<Card style={{ backgroundColor: "#1c1c1c", color: "white" }}>
+					<Card.Body className={styles.steamCardContianer}>
+						<div className={styles.steamBody}>
+							<Card.Title style={{ textAlign: "center" }}>
+								<a href={e.storePageUrl} target="_blank">{e.title}</a>
+							</Card.Title>
+							<div style={{ textAlign: "center", marginBottom: "5px" }}>
+								Playtime: {timeFormat(e.playHour, e.playMinutes)}
+							</div>
+							<div className={styles.gameCard}>
+								<Image src={e.flyer} alt="Flyer Not Found" width={150} height={226} />
+								<ul className={styles.achievementsList}>
+									<li style={{ fontSize: "1.25em" }}><u>Recent Achievements</u></li>
+									{e.recentAchevements.length > 0 ? (
+										e.recentAchevements.map((a) =>
 											<li key={e.appId}>
 												<div className={styles.achievements}>
 													<Image src={a.imgUrl || ""} alt="Pic Not Found" width={50} height={50} />
 													<p className={styles.achievementItem}>{a.name}</p>
 												</div>
-
 											</li>
-										)}
-
-
-									</ul>
-
-								</div>
-
+										)
+									) : (
+										<li>No Recent Achievements</li>
+									)}
+								</ul>
 							</div>
-
-						</Card.Body>
-					</Card>
-
-
-				</>)}
+						</div>
+					</Card.Body>
+				</Card>
+			)}
 		</div>
 
 	)

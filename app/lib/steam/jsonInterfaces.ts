@@ -33,7 +33,8 @@ export interface SteamGetPlayerAchivements {
 	playerstats: {
 		steamID: string,
 		gameName: string,
-		achievements: playerAchivements[]
+		achievements: playerAchivements[],
+		success: boolean,
 	}
 }
 
