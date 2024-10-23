@@ -1,6 +1,9 @@
 import 'dotenv/config'
 
+
+
 const nextConfig = {
+	output: "standalone",
 	images: {
 		remotePatterns: [
 			{

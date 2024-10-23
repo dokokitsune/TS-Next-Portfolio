@@ -46,6 +46,7 @@ export default async function Projects() {
 	}
 
 	return (
+
 		<main className={styles.projectContainer}>
 			<ProjectCard data={projectArray} />
 		</main>

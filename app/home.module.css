@@ -17,7 +17,7 @@
 }
 
 .name {
-	font-family: sans-serif;
+	font-family: serif;
 	color: white;
 	text-align: center;
 	font-size: 4em;
@@ -64,7 +64,7 @@
 
 .summary {
 	text-align: center;
-	font-family: 'IBM Plex Serif';
+	font-family: serif;
 	letter-spacing: 2.5px;
 	color: white;
 	font-size: 1.5em;

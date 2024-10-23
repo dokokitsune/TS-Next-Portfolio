@@ -25,7 +25,7 @@ export default function AboutMeClient({ initialGames, initialProjects }: AboutMe
 				Hello there, my name is Weston Wood and I am a senior at California State University, Los Angeles (Cal State LA).
 				I am currently the Web Master for the Association for Computing Machinery (ACM) club on campus.
 				I also work as an IT Student Assistant where I service other departments with technology and monitor faculty computer labs.
-				My career goal is to pursue cloud engineering or full-stack development.
+				My career goal is to pursue a cloud engineer or site reliability engineer position.
 			</div>
 			<p className={styles.summary}> Make sure to check out my most recently commited projects and played games on Steam!</p>
 			<Card style={{ backgroundColor: "#151515" }}>
