@@ -43,8 +43,8 @@ const SteamCard: React.FC<localGamesProps> = ({ data }) => {
 								<Image src={e.flyer} alt="Flyer Not Found" width={150} height={226} />
 								<ul className={styles.achievementsList}>
 									<li style={{ fontSize: "1.25em" }}><u>Recent Achievements</u></li>
-									{e.recentAchevements.length > 0 ? (
-										e.recentAchevements.map((a, index) =>
+									{e.recentAchievements.length > 0 ? (
+										e.recentAchievements.map((a, index) =>
 											<li key={`${e.appId}-achievement-${index}`}>
 												<div className={styles.achievements}>
 													<Image src={a.imgUrl || ""} alt="Pic Not Found" width={50} height={50} />
