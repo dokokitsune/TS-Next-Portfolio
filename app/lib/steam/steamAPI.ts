@@ -18,7 +18,7 @@ export interface Game {
 	flyer: string,
 	playHour: number,
 	playMinutes: number,
-	recentAchevements: Achevement[]
+	recentAchievements: Achevement[]
 }
 
 
@@ -39,6 +39,8 @@ export async function recentPlayedGames<T>(): Promise<T> {
 
 	const gameArray: recentGames = []
 
+	
+
 	for (const game of steamData.response.games) {
 		const title = game.name
 		const titleNoSpace = title.replace(/\s+/g, '_')
@@ -52,7 +54,7 @@ export async function recentPlayedGames<T>(): Promise<T> {
 			flyer: flyerUrl,
 			playHour: Math.floor(game.playtime_forever / 60),
 			playMinutes: Math.floor(game.playtime_forever % 60),
-			recentAchevements: await assembleRecentAchievments(game.appid.toString())
+			recentAchievements: await assembleRecentAchievments(game.appid.toString())
 		}
 
 		gameArray.push(gameEntry)
