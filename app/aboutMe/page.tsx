@@ -12,8 +12,8 @@ export default async function AboutMePage() {
 
 
 	const [gamesRes, projectsRes] = await Promise.all([
-		fetch('https://wwoodportfolio.com/api/games', { cache: "no-store" }),
-		fetch('https://wwoodportfolio.com/api/projects', { cache: "no-store" })
+		fetch('https://api.wwoodportfolio.com/games', { cache: "no-store" }),
+		fetch('https://api.wwoodportfolio.com/projects', { cache: "no-store" })
 	])
 
 	const [steamGames, gitProjects]: apiData[] = await Promise.all([
