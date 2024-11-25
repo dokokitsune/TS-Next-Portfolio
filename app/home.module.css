@@ -8,7 +8,7 @@
 }
 
 .reactTyped {
-	font-family: monospace;
+	font-family: Cascadia Mono;
 	display: flex;
 	justify-content: center;
 	color: white;
@@ -17,7 +17,7 @@
 }
 
 .name {
-	font-family: serif;
+	font-family: Georgia;
 	color: white;
 	text-align: center;
 	font-size: 4em;
@@ -64,10 +64,11 @@
 
 .summary {
 	text-align: center;
-	font-family: serif;
+	font-family: Georgia;
 	letter-spacing: 2.5px;
 	color: white;
 	font-size: 1.5em;
+	margin: 20px 20px 0
 }
 
 .cardTitle {
@@ -77,6 +78,7 @@
 
 
 .steamContainer {
+	font-family: Georgia;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
@@ -86,7 +88,6 @@
 }
 
 .steamCardContainer {
-
 	width: 426px;
 }
 
@@ -179,6 +180,7 @@
 
 /* Projects */
 .projectContainer {
+	font-family: Georgia;
 	display: block;
 	text-align: center;
 	color: white;
@@ -224,6 +226,7 @@
 /* Contact Me */
 
 .contactTitle {
+	font-family: Gerogia;
 	color: white;
 	text-align: center;
 	display: flex;
@@ -236,6 +239,7 @@
 }
 
 .formContainer {
+	font-family: Gerogia;
 	width: 50%;
 	display: grid;
 	margin: auto;
@@ -248,6 +252,7 @@
 /* React PDF */
 
 .pageContainer {
+	font-family: Gerogia;
 	display: flex;
 	justify-content: center;
 }

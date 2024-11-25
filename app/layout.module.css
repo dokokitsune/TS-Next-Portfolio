@@ -1,4 +1,5 @@
 .layoutContainer {
+	font-family: Georgia;
 	background-color: black;
 	overflow-x: hidden;
 }
@@ -16,6 +17,7 @@
 }
 
 .navBar {
+	
 	background-color: #1c1c1e !important;
 	padding: 20px;
 	text-decoration: none;
@@ -30,6 +32,7 @@
 }
 
 .LinkElements {
+	
 	padding-bottom: 10px;
 	font-size: larger;
 	text-decoration: none;

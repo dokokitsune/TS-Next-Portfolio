@@ -11,7 +11,7 @@ export default function Home() {
 			<h1 className={styles.name}>Weston J. Wood</h1>
 			<ReactTyped
 				className={styles.reactTyped}
-				strings={["Cal State LA Senior", "ACM Web Master", "IT Student Assistant"]}
+				strings={["Cal State LA Senior", "Aspiring Cloud Engineer", "ACM Web Master"]}
 				typeSpeed={40}
 				backSpeed={50}
 				loop

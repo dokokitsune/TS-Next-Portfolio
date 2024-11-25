@@ -1,5 +1,5 @@
 import React from "react"
-import { gitResponse } from "../lib/git/gitAPI"
+import { gitResponse } from "../lib/gitInterfaces"
 import { Card } from "react-bootstrap"
 import styles from "../home.module.css"
 
@@ -25,7 +25,7 @@ const GitCard: React.FC<localProjectProps> = ({ data }) => {
 							</div>
 							<p className={styles.gitCommitMessage}>&ldquo;{e.latestCommit.message}&rdquo;</p>
 						</Card.Body>
-						<Card.Footer className={styles.gitFooter}>Last Commit: {e.latestCommit.date}</Card.Footer>
+						<Card.Footer className={styles.gitFooter}>Last Commit: {e.latestCommit.relative_time}</Card.Footer>
 
 					</Card>
 
