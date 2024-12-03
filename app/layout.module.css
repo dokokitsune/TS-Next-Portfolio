@@ -1,10 +1,10 @@
 .layoutContainer {
-	font-family: Georgia;
 	background-color: black;
 	overflow-x: hidden;
 }
 
 .loading {
+	font-family: Georgia, 'Times New Roman', Times, serif;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -31,7 +31,7 @@
 }
 
 .LinkElements {
-	
+	font-family: Georgia, 'Times New Roman', Times, serif;
 	padding-bottom: 10px;
 	font-size: larger;
 	text-decoration: none;

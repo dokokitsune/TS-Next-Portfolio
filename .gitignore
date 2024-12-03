@@ -19,6 +19,12 @@ ecosystem.config.js
 # production
 /build
 
+#keys
+/.keys
+
+nginx.conf
+nginx.conf.template
+
 # misc
 .DS_Store
 *.pem
