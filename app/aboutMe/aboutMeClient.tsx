@@ -26,8 +26,10 @@ export default function AboutMeClient({ initialGames, initialProjects }: AboutMe
 				<Card.Title ><span className={styles.cardTitle}>About Me</span></Card.Title>
 				<div className={styles.summary}>
 				Hello there, my name is Weston Wood and I am a senior at California State University, Los Angeles (Cal State LA).
-				I am currently the Web Master for the Association for Computing Machinery (ACM) club on campus.
+				I am currently the Web Master for the Association for Computing Machinery (ACM) club on campus. 
+				I recently acquired the <u>AWS Certified Solutions Architect - Associate</u> certification.
 				I also work as an IT Student Assistant where I service other departments with technology and monitor faculty computer labs.
+				
 				My career goal is to pursue a Cloud or Site Reliability Engineer position.
 			</div>
 				</Card.Body>
@@ -41,14 +43,14 @@ export default function AboutMeClient({ initialGames, initialProjects }: AboutMe
 			
 			<Card style={{ backgroundColor: "#151515" }}>
 				<Card.Body>
-					<Card.Title ><span className={styles.cardTitle}>Projects</span></Card.Title>
+					<Card.Title style={{marginBottom: "25px"}} ><span className={styles.cardTitle}>Projects</span></Card.Title>
 
 					<GitCard data={initialProjects} />
 				</Card.Body>
 			</Card>
 			<Card style={{ backgroundColor: "#151515" }}>
 				<Card.Body>
-					<Card.Title ><span className={styles.cardTitle}>Games</span></Card.Title>
+					<Card.Title style={{marginBottom: "25px"}}><span className={styles.cardTitle}>Games</span></Card.Title>
 					<SteamCard data={initialGames}></SteamCard>
 				</Card.Body>
 			</Card>

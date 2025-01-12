@@ -73,7 +73,7 @@
 
 .cardTitle {
 	background-color: whitesmoke;
-	padding: 5px
+	padding: 5px;
 }
 
 
@@ -107,19 +107,29 @@
 .gameCard {
 	display: flex;
 	font-size: 0.75em;
-
+	gap: 25px;
+	padding-top: 5px;
 }
 
 .achievementsList {
 	display: flex;
 	flex-direction: column;
+	
 	gap: 15px;
 	list-style: none;
+	width: 100%;
+	background-color: rgb(37, 37, 37);
+	border-radius: 5px;
+	padding-bottom: 10px;
+
+
+	
 }
 
 .achievements {
 	display: flex;
 	overflow: hidden;
+	
 }
 
 .achievementItem {

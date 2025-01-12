@@ -40,7 +40,7 @@ const SteamCard: React.FC<localGamesProps> = ({ data }) => {
 								Playtime: {timeFormat(e.playHour, e.playMinutes)}
 							</div>
 							<div className={styles.gameCard}>
-								<Image src={e.flyer} alt="Flyer Not Found" width={150} height={226} />
+								<Image src={e.flyer} style={{borderRadius: "5px"}} alt="Flyer Not Found" width={150} height={226} />
 								<ul className={styles.achievementsList}>
 									<li style={{ fontSize: "1.25em" }}><u>Recent Achievements</u></li>
 									{e.recentAchievements.length > 0 ? (
