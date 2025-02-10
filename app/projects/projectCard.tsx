@@ -41,7 +41,7 @@ export const ProjectCard: React.FC<localProjectProps> = ({ data }) => {
 							>
 								<Card.Body>
 									<Card.Title>{e.Title}</Card.Title>
-									<Card.Img variant="top" alt="Project Img" src={e.imgUrls[0]}></Card.Img>
+									<Card.Img style={{border: "solid"}} variant="top" alt="Project Img" src={e.imgUrls[0]}></Card.Img>
 
 									<Card.Text><p style={{ fontSize: 'larger' }} className="mt-4">{e.Summary}</p></Card.Text>
 								</Card.Body>

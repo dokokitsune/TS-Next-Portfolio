@@ -1,14 +1,14 @@
 interface Achevement {
-	name: string | undefined,
-	imgUrl: string | undefined,
-	globalPercentage: number
+  name: string | undefined;
+  imgUrl: string | undefined;
+  globalPercentage: number;
 }
 export interface Game {
-	title: string,
-	storePageUrl: string,
-	appId: number,
-	flyer: string,
-	playHour: number,
-	playMinutes: number,
-	recentAchievements: Achevement[]
+  title: string;
+  storePageUrl: string;
+  appId: number;
+  flyer: string;
+  playHour: number;
+  playMinutes: number;
+  recentAchievements: Achevement[];
 }
