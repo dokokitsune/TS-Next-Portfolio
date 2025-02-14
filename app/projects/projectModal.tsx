@@ -27,14 +27,24 @@ export const ProjectModal: React.FC<modalProps> = (props) => {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      className={styles.modalContainer}
     >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
+      <Modal.Header
+        closeButton
+        style={{ backgroundColor: "#151515", borderBottomColor: "whitesmoke" }}
+      >
+        <Modal.Title
+          id="contained-modal-title-vcenter"
+          style={{ color: "white" }}
+        >
           {props.data.Title}
         </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body className={styles.modelBody}>
+      <Modal.Body
+        className={styles.modelBody}
+        style={{ backgroundColor: "#151515", color: "white" }}
+      >
         <Container>
           <Row>
             <Carousel>
@@ -53,7 +63,7 @@ export const ProjectModal: React.FC<modalProps> = (props) => {
           </Row>
         </Container>
       </Modal.Body>
-      <Modal.Footer>
+      <Modal.Footer style={{ backgroundColor: "#151515" }}>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>

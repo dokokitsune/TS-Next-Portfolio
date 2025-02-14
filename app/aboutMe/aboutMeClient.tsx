@@ -41,8 +41,8 @@ export default function AboutMeClient({
         <Card.Footer>
           <p className={styles.summary}>
             {" "}
-            Make sure to check out my most recently commited projects and played
-            games on Steam!
+            Make sure to check out my most recently committed projects and
+            played games on Steam!
           </p>
         </Card.Footer>
       </Card>
