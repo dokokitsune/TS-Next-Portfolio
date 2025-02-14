@@ -1,9 +1,9 @@
 "use client";
-import React, { FormEvent, useEffect } from "react";
+import React, { FormEvent } from "react";
 import styles from "../home.module.css";
 import { createEmailTemplate } from "../components/actions";
 
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Col } from "react-bootstrap";
 
 export default function ContactMe() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
