@@ -1,0 +1,60 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+env:
+  AWS_REGION: us-west-2
+  ECR_REPOSITORY: 349206200747.dkr.ecr.us-west-2.amazonaws.com/portfolio-webapp/website
+
+
+jobs:
+
+  build-and-push:
+    name: Build and Push to ECR
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      
+    steps:
+    - uses: actions/checkout@v4
+    - name: Configure AWS credentials using OIDC
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::349206200747:role/Git-Action-Push-To-ECR # Replace with your IAM role ARN
+        aws-region: ${{ env.AWS_REGION }}
+        
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Extract Docker metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}
+        # Generates tags like: latest, git commit SHA, git branch name (if not main/master), git tag
+        tags: |
+          type=sha,prefix=,suffix=,format=short
+          type=ref,event=branch
+          type=ref,event=tag
+          type=ref,event=pr
+          type=raw,value=latest,enable={{is_default_branch}}
+
+      
+    - name: Build and push Docker image
+      id: build-push
+      uses: docker/build-push-action@v5
+      with:
+        context: . # Use the root of the repository as the build context
+        # Uncomment the line below if your Dockerfile is not at the root
+        # file: ${{ env.DOCKERFILE_PATH }}
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        # Optional: Enable build cache for faster builds
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
