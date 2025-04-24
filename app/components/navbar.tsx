@@ -14,10 +14,11 @@ export default function LayoutNavbar() {
 
   const links = [
     { href: "/", label: "Home", hrefQuery: "/" },
+    { href: "resume/", label: "Resume", hrefQuery: "/resume" },
     { href: "aboutMe/", label: "About Me", hrefQuery: "/aboutMe" },
     { href: "projects/", label: "Projects", hrefQuery: "/projects" },
     { href: "contactMe/", label: "Contact Me", hrefQuery: "/contactMe" },
-    { href: "resume/", label: "Resume", hrefQuery: "/resume" },
+    //    { href: "resume/", label: "Resume", hrefQuery: "/resume" },
   ];
 
   return (
