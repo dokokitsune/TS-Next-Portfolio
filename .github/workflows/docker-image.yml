@@ -64,6 +64,7 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
+        build-args: |
+          AWS_REGION=${{ env.AWS_REGION }}
         secret-files: |
           aws=${{ github.workspace }}/.aws/credentials
-          awsconfig=${{ github.workspace }}/.aws/config
