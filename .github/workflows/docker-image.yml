@@ -28,15 +28,24 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
       
-    - name: Create AWS credentials file for Docker secret
+    - name: Create AWS config & credentials for Docker secret
       run: |
         mkdir -p ${{ github.workspace }}/.aws
-        echo "[default]" > ${{ github.workspace }}/.aws/credentials
-        echo "aws_access_key_id=${{ env.AWS_ACCESS_KEY_ID }}" >> ${{ github.workspace }}/.aws/credentials
-        echo "aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}" >> ${{ github.workspace }}/.aws/credentials
-        echo "aws_session_token=${{ env.AWS_SESSION_TOKEN }}" >> ${{ github.workspace }}/.aws/credentials
-        echo "region=${{ env.AWS_REGION }}" >> ${{ github.workspace }}/.aws/credentials    echo "region=${{ env.AWS_REGION }}" >> ${{ github.workspace }}/.aws/credentials
+        # credentials (only keys & token go here)
+        cat <<EOF > ${{ github.workspace }}/.aws/credentials
+        [default]
+        aws_access_key_id=${{ env.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}
+        aws_session_token=${{ env.AWS_SESSION_TOKEN }}
+        EOF
         
+        # config (region belongs here)
+        cat <<EOF > ${{ github.workspace }}/.aws/config
+        [default]
+        region=${{ env.AWS_REGION }}
+        output=json
+        EOF
+
     - name: Extract Docker metadata
       id: meta
       uses: docker/metadata-action@v5
