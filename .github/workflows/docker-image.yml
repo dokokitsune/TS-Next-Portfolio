@@ -35,9 +35,7 @@ jobs:
         echo "aws_access_key_id=${{ env.AWS_ACCESS_KEY_ID }}" >> ${{ github.workspace }}/.aws/credentials
         echo "aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}" >> ${{ github.workspace }}/.aws/credentials
         echo "aws_session_token=${{ env.AWS_SESSION_TOKEN }}" >> ${{ github.workspace }}/.aws/credentials
-
-        echo "[default]" > ${{ github.workspace }}/.aws/config
-        echo "region=${{ env.AWS_REGION }}" >> ${{ github.workspace }}/.aws/config
+        echo "region=${{ env.AWS_REGION }}" >> ${{ github.workspace }}/.aws/credentials    echo "region=${{ env.AWS_REGION }}" >> ${{ github.workspace }}/.aws/credentials
         
     - name: Extract Docker metadata
       id: meta
