@@ -3,7 +3,7 @@ FROM node:lts-alpine AS base
 # Dependencies Stage
 FROM base AS deps
 WORKDIR /app
-COPY yarn.lock ./
+COPY yarn.lock .
 RUN yarn install --frozen-lockfile
 
 #Builder Stage
@@ -11,11 +11,8 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
-ARG AWS_REGION
-ENV AWS_REGION=${AWS_REGION}
-
-RUN yarn build
+RUN --mount=type=secret,id=aws,target=/root/.aws/credentials \
+  yarn build
 
 # Production image
 FROM base AS runner
