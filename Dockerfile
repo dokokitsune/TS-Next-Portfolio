@@ -10,8 +10,11 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
 RUN --mount=type=secret,id=aws,target=/root/.aws/credentials \
+  --mount=type=secret,id=aws_config,target=/root/.aws/config \
   npm run build
+
 
 # Production image
 FROM base AS runner
