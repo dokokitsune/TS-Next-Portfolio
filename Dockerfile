@@ -1,5 +1,6 @@
 FROM node:lts-alpine AS base 
 
+RUN apk add --no-cache python3 make g++
 # Dependencies Stage
 FROM base AS deps
 WORKDIR /app
