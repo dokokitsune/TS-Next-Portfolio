@@ -3,7 +3,7 @@ FROM node:lts-alpine AS base
 # Dependencies Stage
 FROM base AS deps
 WORKDIR /app
-COPY yarn.lock .
+COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 #Builder Stage
