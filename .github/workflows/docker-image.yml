@@ -9,6 +9,8 @@ env:
   AWS_DEFAULT_REGION: us-west-2
   AWS_REGION: us-west-2
   ECR_REPOSITORY: portfolio-webapp/website
+  # Define a path for the temporary credentials file
+  AWS_CREDS_TEMP_FILE: ${{ runner.temp }}/aws_credentials # Use runner's temp dir
 
 jobs:
   build-and-push:
@@ -28,6 +30,20 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::349206200747:role/Github-Push-to-ECR
           aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+      # ---> Step to write credentials to a temp file <---
+      - name: Write AWS credentials to temp file
+        run: |
+          echo "[default]" > ${{ env.AWS_CREDS_TEMP_FILE }}
+          echo "aws_access_key_id = ${{ env.AWS_ACCESS_KEY_ID }}" >> ${{ env.AWS_CREDS_TEMP_FILE }}
+          echo "aws_secret_access_key = ${{ env.AWS_SECRET_ACCESS_KEY }}" >> ${{ env.AWS_CREDS_TEMP_FILE }}
+          echo "aws_session_token = ${{ env.AWS_SESSION_TOKEN }}" >> ${{ env.AWS_CREDS_TEMP_FILE }}
+          echo "Wrote temporary credentials to ${{ env.AWS_CREDS_TEMP_FILE }}"
+        # Ensure credentials vars are masked in logs if printed directly
+        env:
+          AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ env.AWS_SESSION_TOKEN }}
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -57,3 +73,9 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          # ---> Pass the temp file path as the secret source <---
+          secrets: |
+            aws_credentials=${{ env.AWS_CREDS_TEMP_FILE }}
+          # ---> Still need the build arg for region <---
+          build-args: |
+            AWS_REGION=${{ env.AWS_REGION }}
