@@ -16,6 +16,9 @@ ENV AWS_REGION=${AWS_REGION_ARG}
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+
+RUN mkdir -p /root/.aws
+
 RUN --mount=type=secret,id=aws,target=/root/.aws/credentials \
   --mount=type=secret,id=aws_config,target=/root/.aws/config \
   npm run build
