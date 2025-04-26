@@ -3,7 +3,7 @@ FROM node:lts-alpine AS base
 # Dependencies Stage
 FROM base AS deps
 WORKDIR /app
-COPY package.json yarn.lock ./
+COPY package*.json  ./
 RUN npm ci
 #Builder Stage
 FROM base AS builder
