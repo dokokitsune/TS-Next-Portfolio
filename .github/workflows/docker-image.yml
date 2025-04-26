@@ -65,7 +65,8 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          push: true
+          # Only push if the trigger was a push event on the main branch
+          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
