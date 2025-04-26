@@ -8,13 +8,17 @@ RUN npm ci
 #Builder Stage
 FROM base AS builder
 WORKDIR /app
+
+
+ARG AWS_REGION_ARG
+ENV AWS_REGION=${AWS_REGION_ARG}
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 RUN --mount=type=secret,id=aws,target=/root/.aws/credentials \
   --mount=type=secret,id=aws_config,target=/root/.aws/config \
   npm run build
-
 
 # Production image
 FROM base AS runner
