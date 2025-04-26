@@ -64,7 +64,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          # Only push if the trigger was a push event on the main branch
           push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -73,5 +72,5 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           secrets: |
-            aws=~/.aws/credentials
-            aws_config=~/.aws/config
+            id=aws,src=${{ steps.configure.outputs.aws-credentials-file }}
+            id=aws_config,src=/tmp/aws_config
