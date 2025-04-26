@@ -56,8 +56,9 @@ jobs:
           echo "aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
           echo "aws_session_token=${{ env.AWS_SESSION_TOKEN }}" >> ~/.aws/credentials
           # Create the config file containing the region
-          echo "[default]" > ~/.aws/config
-          echo "region=${{ env.AWS_REGION }}" >> ~/.aws/config
+          echo "[default]" > /tmp/aws_config
+          echo "region=${{ env.AWS_REGION }}" >> /tmp/aws_config
+
         shell: bash
         
       - name: Build and push Docker image
