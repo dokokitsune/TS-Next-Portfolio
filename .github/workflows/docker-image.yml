@@ -70,5 +70,5 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           secrets: |
-            src=/tmp/credentials
-            src=/tmp/aws_config
+            id=aws,src=/tmp/credentials
+            id=aws_config,src=/tmp/aws_config
