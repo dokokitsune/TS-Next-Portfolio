@@ -9,10 +9,6 @@ RUN npm ci
 FROM base AS builder
 WORKDIR /app
 
-
-ARG AWS_REGION_ARG
-ENV AWS_REGION=${AWS_REGION_ARG}
-
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
