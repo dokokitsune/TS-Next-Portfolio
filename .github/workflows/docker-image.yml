@@ -67,10 +67,8 @@ jobs:
           push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            AWS_REGION_ARG=${{ env.AWS_REGION }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           secrets: |
-            id=aws,src=/tmp/credentials
-            id=aws_config,src=/tmp/aws_config
+            src=/tmp/credentials
+            src=/tmp/aws_config
