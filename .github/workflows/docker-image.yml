@@ -50,15 +50,14 @@ jobs:
 
       - name: Create AWS credentials & config files for Docker build secrets
         run: |
-          mkdir -p ~/.aw
-          echo "[default]" > /tmp/credentials
-          echo "aws_access_key_id=${{ env.AWS_ACCESS_KEY_ID }}" >> /tmp/credentials
-          echo "aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}" >> /tmp/credentials
-          echo "aws_session_token=${{ env.AWS_SESSION_TOKEN }}" >> /tmp/credentials
-          # Create the config file containing the region
-          echo "[default]" > /tmp/aws_config
-          echo "region=${{ env.AWS_REGION }}" >> /tmp/aws_config
 
+          echo "[default]" > /tmp/credentials
+          echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> /tmp/credentials
+          echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> /tmp/credentials
+          echo "aws_session_token=$AWS_SESSION_TOKEN" >> /tmp/credentials
+
+          echo "[default]" > /tmp/aws_config
+          echo "region=$AWS_REGION" >> /tmp/aws_config
         shell: bash
         
       - name: Build and push Docker image
