@@ -50,11 +50,11 @@ jobs:
 
       - name: Create AWS credentials & config files for Docker build secrets
         run: |
-          mkdir -p ~/.aws
-          echo "[default]" > ~/.aws/credentials
-          echo "aws_access_key_id=${{ env.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
-          echo "aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
-          echo "aws_session_token=${{ env.AWS_SESSION_TOKEN }}" >> ~/.aws/credentials
+          mkdir -p ~/.aw
+          echo "[default]" > /tmp/credentials
+          echo "aws_access_key_id=${{ env.AWS_ACCESS_KEY_ID }}" >> /tmp/credentials
+          echo "aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}" >> /tmp/credentials
+          echo "aws_session_token=${{ env.AWS_SESSION_TOKEN }}" >> /tmp/credentials
           # Create the config file containing the region
           echo "[default]" > /tmp/aws_config
           echo "region=${{ env.AWS_REGION }}" >> /tmp/aws_config
@@ -73,5 +73,5 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           secrets: |
-            id=aws,src=$HOME/.aws/credentials
+            id=aws,src=/tmp/credentials
             id=aws_config,src=/tmp/aws_config
