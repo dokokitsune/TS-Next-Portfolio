@@ -18,11 +18,6 @@ RUN mkdir -p /root/.aws
 
 RUN --mount=type=secret,id=aws,target=/root/.aws/credentials \
   --mount=type=secret,id=aws_config,target=/root/.aws/config \
-  echo "--- Credentials File ---" && \
-    cat /root/.aws/credentials && \
-    echo "--- Config File ---" && \
-    cat /root/.aws/config && \
-    echo "--- Running Build ---" && \
   npm run build
 
 # Production image
