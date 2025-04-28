@@ -1,18 +1,24 @@
+#syntax=docker/dockerfile:1
 FROM node:lts-alpine AS base 
 
 # Dependencies Stage
 FROM base AS deps
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
-
+COPY package*.json  ./
+RUN npm ci
 #Builder Stage
 FROM base AS builder
 WORKDIR /app
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+
+RUN mkdir -p /root/.aws
+
 RUN --mount=type=secret,id=aws,target=/root/.aws/credentials \
-  yarn build
+  --mount=type=secret,id=aws_config,target=/root/.aws/config \
+  npm run build
 
 # Production image
 FROM base AS runner
