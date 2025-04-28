@@ -6,7 +6,6 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_DEFAULT_REGION: us-west-2
   AWS_REGION: us-west-2
   ECR_REPOSITORY: portfolio-webapp/website
 
@@ -27,7 +26,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::349206200747:role/Github-Push-to-ECR
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -47,21 +46,9 @@ jobs:
             
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-
-      - name: Create AWS credentials & config files for Docker build secrets
-        run: |
-
-          echo "[default]" > /tmp/credentials
-          echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> /tmp/credentials
-          echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> /tmp/credentials
-          echo "aws_session_token=$AWS_SESSION_TOKEN" >> /tmp/credentials
-
-          echo "[default]" > /tmp/aws_config
-          echo "region=$AWS_REGION" >> /tmp/aws_config
-        shell: bash
         
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
@@ -70,5 +57,10 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           secrets: |
-            id=aws,src=/tmp/credentials
-            id=aws_config,src=/tmp/aws_config
+            "aws=[default]
+            aws_access_key_id=${{ env.AWS_ACCESS_KEY_ID }}
+            aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}
+            ${{ env.AWS_SESSION_TOKEN != '' && format('aws_session_token={0}', env.AWS_SESSION_TOKEN) || '' }}"
+            "aws_config=[default]
+            region=${{ env.AWS_REGION }}"
+
