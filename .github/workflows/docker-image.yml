@@ -26,7 +26,8 @@ jobs:
         id: configure-aws 
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::349206200747:role/Github-Push-to-ECR 
+          role-to-assume: arn:aws:iam::349206200747:role/Github-Push-to-ECR
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
