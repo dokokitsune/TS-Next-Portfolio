@@ -1,4 +1,5 @@
-name: Docker Image CI
+name: Docker Image CI 
+
 on:
   push:
     branches: [ "main" ]
@@ -7,47 +8,49 @@ on:
 
 env:
   AWS_REGION: us-west-2
-  ECR_REPOSITORY: portfolio-webapp/website
 
 jobs:
   build-and-push:
-    name: Build and Push to ECR
+    name: Build with AWS Creds & Push to GHCR
     runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
+      packages: write
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+    
       - name: Configure AWS credentials via OIDC
-        id: configure
+        id: configure-aws 
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::349206200747:role/Github-Push-to-ECR
-          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: arn:aws:iam::349206200747:role/Github-Push-to-ECR 
 
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}
+          images: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}
           tags: |
             type=sha,prefix=,suffix=,format=short
             type=ref,event=branch
             type=ref,event=tag
             type=ref,event=pr
             type=raw,value=latest,enable={{is_default_branch}}
-            
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-        
-      - name: Build and push Docker image
+
+      - name: Build and push Docker image to GHCR
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -62,5 +65,4 @@ jobs:
             aws_secret_access_key=${{ env.AWS_SECRET_ACCESS_KEY }}
             ${{ env.AWS_SESSION_TOKEN != '' && format('aws_session_token={0}', env.AWS_SESSION_TOKEN) || '' }}"
             "aws_config=[default]
-            region=${{ env.AWS_REGION }}"
-
+            region=${{ env.AWS_REGION }}" 
