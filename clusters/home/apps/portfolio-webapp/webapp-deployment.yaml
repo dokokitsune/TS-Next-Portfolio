@@ -4,6 +4,7 @@ metadata:
   labels:
     app: portfolio-webapp
   name: portfolio-tier
+  namespace: default
 spec:
   type: ClusterIP
   ports:
@@ -19,6 +20,7 @@ metadata:
   name: portfolio-deployment
   labels:
     app: portfolio-webapp
+  namespace: default
 spec:
   replicas: 2
   selector:

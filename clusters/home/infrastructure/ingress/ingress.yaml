@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: portfolio-ingress
+  namespace: default
   annotations:
     # Make sure the ingress class is correct
     kubernetes.io/ingress.class: "traefik"
