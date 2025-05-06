@@ -1,0 +1,67 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio-deployment
+  labels:
+    app: portfolio-webapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: portfolio-webapp
+  template:
+    metadata:
+      labels:
+        app: portfolio-webapp
+    spec:
+      containers:
+        - name: portfolio-webapp
+          image: ghcr.io/dokokitsune/ts-next-portfolio:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: portfolio-webapp
+  name: portfolio-tier
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  selector:
+    app: portfolio-webapp
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: portfolio-ingress
+  annotations:
+    # Make sure the ingress class is correct
+    kubernetes.io/ingress.class: "traefik"
+    # REMOVE any cert-manager annotations if they exist
+    # Example: Remove 'cert-manager.io/cluster-issuer: ...'
+spec:
+  tls:
+    - hosts:
+        - wwoodportfolio.com
+      # Reference the secret you created in Step 2
+      secretName: tls-portfolio
+  rules:
+    # Ensure the host matches the one in the TLS section and your certificate
+    - host: wwoodportfolio.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                # Service details from your previous manifest
+                name: portfolio-tier
+                port:
+                  number: 80
