@@ -27,10 +27,11 @@ export default function AboutMeClient({
             <span className={styles.cardTitle}>About Me</span>
           </Card.Title>
           <div className={styles.summary}>
-            Hello there, my name is Weston Wood and I am a senior at California
-            State University, Los Angeles (Cal State LA). I am currently the Web
-            Master for the Association for Computing Machinery (ACM) club on
-            campus. I recently acquired the{" "}
+            Hello there, my name is Weston Wood and I have recently graduated
+            from California State University, Los Angeles (Cal State LA) with a
+            Bachelor's Degree in Computer Science. I am currently the Web Master
+            for the Association for Computing Machinery (ACM) club on campus. I
+            recently acquired the{" "}
             <u>AWS Certified Solutions Architect - Associate</u> certification.
             I also work as an IT Student Assistant where I service other
             departments with technology and monitor faculty computer labs. My

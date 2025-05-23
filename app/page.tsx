@@ -12,10 +12,9 @@ export default function Home() {
       <ReactTyped
         className={styles.reactTyped}
         strings={[
-          "Cal State LA Senior",
+          "Cal State LA Alumni",
           "Aspiring Cloud Engineer",
           "AWS Solutions Architect Certified",
-          "ACM Web Master",
         ]}
         typeSpeed={40}
         backSpeed={50}
