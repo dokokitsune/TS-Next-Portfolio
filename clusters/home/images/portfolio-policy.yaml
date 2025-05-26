@@ -7,8 +7,6 @@ metadata:
 spec:
   imageRepositoryRef:
     name: portfolio-webapp
-  filterTags:
-    pattern: "^latest$"
-  policy:
-    alphabetical:
-      order: asc
+    policy:
+    semver:
+      range: ">=0.1.0"
