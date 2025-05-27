@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: portfolio-webapp
-          image: ghcr.io/dokokitsune/ts-next-portfolio:latest # {"$imagepolicy": "flux-system:portfolio-webapp"}
+          image: ghcr.io/dokokitsune/ts-next-portfolio:v1.0.2 # {"$imagepolicy": "flux-system:portfolio-webapp"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
