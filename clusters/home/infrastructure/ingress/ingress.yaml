@@ -4,18 +4,14 @@ metadata:
   name: portfolio-ingress
   namespace: default
   annotations:
-    # Make sure the ingress class is correct
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.class: "traefik"
-    # REMOVE any cert-manager annotations if they exist
-    # Example: Remove 'cert-manager.io/cluster-issuer: ...'
 spec:
   tls:
     - hosts:
         - wwoodportfolio.com
-      # Reference the secret you created in Step 2
       secretName: tls-portfolio
   rules:
-    # Ensure the host matches the one in the TLS section and your certificate
     - host: wwoodportfolio.com
       http:
         paths:
@@ -23,7 +19,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                # Service details from your previous manifest
                 name: portfolio-tier
                 port:
                   number: 80
