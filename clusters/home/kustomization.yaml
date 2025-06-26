@@ -5,4 +5,4 @@ resources:
   - ./flux-system/
   - ./apps/portfolio-webapp/webapp-deployment.yaml
   - ./images/
-  - ./infrastructure/ingress/ingress.yaml
+  - ./infrastructure/
