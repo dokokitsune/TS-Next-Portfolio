@@ -7,10 +7,9 @@ import LayoutNavbar from "./components/navbar";
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
-      className={styles.scroll}
       initial={{ y: 60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ ease: "easeInOut", duration: "0.5" }}
+      transition={{ ease: "easeInOut", duration: 0.5 }}
     >
       {children}
     </motion.div>
