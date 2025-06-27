@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - ./cert-manager/namespace.yaml
+  - ./cert-manager/clusterissuer.yaml
   - ./cert-manager/release.yaml
   - ./cert-manager/repository.yaml
   - ./ingress/ingress.yaml
