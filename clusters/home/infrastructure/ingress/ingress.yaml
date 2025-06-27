@@ -4,7 +4,7 @@ metadata:
   name: portfolio-ingress
   namespace: default
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
     kubernetes.io/ingress.class: "traefik"
 spec:
   tls:
