@@ -1,6 +1,8 @@
 import React from "react";
 import AboutMeClient from "./aboutMeClient";
 
+export const runtime = 'edge'
+
 interface apiData {
   data: [];
 }
