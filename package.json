@@ -63,8 +63,6 @@
   },
   "author": "Weston Wood",
   "overrides": {
-    "@types/react": "19.1.6",
-    "@types/react-dom": "19.1.5"
   },
   "resolutions": {
     "@types/react": "19.2.14",
