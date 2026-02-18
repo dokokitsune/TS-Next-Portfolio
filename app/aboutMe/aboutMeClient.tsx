@@ -27,15 +27,13 @@ export default function AboutMeClient({
             <span className={styles.cardTitle}>About Me</span>
           </Card.Title>
           <div className={styles.summary}>
-            Hello there, my name is Weston Wood and I have recently graduated
-            from California State University, Los Angeles (Cal State LA) with a
-            Bachelor&apos;s Degree in Computer Science. I am currently the Web Master
-            for the Association for Computing Machinery (ACM) club on campus. I
-            recently acquired the{" "}
-            <u>AWS Certified Solutions Architect - Associate</u> certification.
-            I also work as an IT Student Assistant where I service other
-            departments with technology and monitor faculty computer labs. My
-            career goal is to pursue a Cloud or Site Reliability Engineer
+            Hello there, my name is Weston Wood and I am a 2025 Alumni of California State University,
+            Los Angeles (Cal State LA) with a Bachelor&apos;s Degree in Computer Science. At home
+            I host a 4 node Kubernetes cluster in my living room. I love to tinker and self-learn.
+            I have taught myself Kubernetes, AWS, Infrustructure-as-Code with 
+            Terraform/OpenTofu and was awarded with the <u>AWS Certified Solutions Architect - Associate</u> certification.
+            Currently I work for Cal State LA assisting in the migration of their legacy database to a SaaS Faculty management tool. <br/><br/>  
+            My career goal is to pursue a Cloud or Site Reliability Engineer
             position.
           </div>
         </Card.Body>

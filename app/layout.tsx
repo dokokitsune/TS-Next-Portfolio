@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html>
       <body className={`${inter.className} ${styles.layoutContainer}`}>
         <LayoutNavbar />
         <Suspense fallback={<Loading />}>
