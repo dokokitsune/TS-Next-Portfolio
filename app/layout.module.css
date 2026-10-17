@@ -1,62 +1,506 @@
 .layoutContainer {
-	font-family: Georgia;
-	background-color: black;
-	overflow-x: hidden;
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+}
+
+.clusterCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  width: min(var(--content-width), calc(100% - 3rem));
+  margin-inline: auto;
+  padding-top: var(--nav-height);
+  padding-bottom: 2.25rem;
 }
 
 .loading {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	width: 100vw;
-	background-color: black;
-	color: white;
-	font-size: 2em;
-
+  display: grid;
+  min-height: 50vh;
+  place-items: center;
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .navBar {
-	background-color: #1c1c1e !important;
-	padding: 20px !important;
-	text-decoration: none;
+  --bs-navbar-color: var(--text-muted);
+  --bs-navbar-hover-color: var(--text);
+  --bs-navbar-active-color: var(--accent);
+  min-height: var(--nav-height);
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(139, 224, 201, 0.12);
+  background: rgba(13, 18, 25, 0.72);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.4);
 }
 
-.hamButton {
-	color: white;
+.pageTransition {
+  animation: page-enter 200ms ease-out;
+}
+
+@keyframes page-enter {
+  from {
+    transform: translateY(8px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.navInner {
+  width: min(var(--content-width), calc(100% - 3rem));
+  margin-inline: auto;
+}
+
+.brand {
+  margin: 0;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
 }
 
 .navElements {
-	text-align: end;
+  justify-content: flex-end;
 }
 
-.LinkElements {
-	
-	padding-bottom: 10px;
-	font-size: larger;
-	text-decoration: none;
-	color: white;
-	position: relative;
-	transition: all 0.3s;
-	font-size: x-large;
-
+.navLinks {
+  gap: 0.25rem;
 }
 
-.LinkElements::before {
-	content: '';
-	background-color: #007bff;
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	height: 3px;
-	width: 0;
-	transition: 0.4s ease-in-out;
+.linkElement {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 0.85rem !important;
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 160ms ease, color 160ms ease;
 }
 
-.LinkElements:hover::before {
-	width: 40%;
+.linkElement:hover {
+  color: var(--text);
+  background: rgba(21, 29, 39, 0.75);
 }
 
-.LinkElements[class*="active"]::before {
-	width: 100%;
+.linkElement[aria-current="location"] {
+  color: var(--accent);
+  background: rgba(27, 38, 51, 0.85);
+  box-shadow: inset 0 0 0 1px rgba(139, 224, 201, 0.16);
+}
+
+.menuToggle {
+  display: grid;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem;
+  place-items: center;
+  border-color: var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.menuToggle:focus-visible {
+  box-shadow: none;
+}
+
+.lualineFooter {
+  --mode-color: var(--accent);
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+  border-top: 1px solid var(--border);
+  background: #111821;
+  font-family: var(--font-mono-stack);
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.lualineFooter[data-mode="insert"] {
+  --mode-color: #7dd3fc;
+}
+
+.lualineFooter[data-mode="visual"] {
+  --mode-color: #c4b5fd;
+}
+
+.lualineFooter[data-mode="command"] {
+  --mode-color: #fcd34d;
+}
+
+.lualineBar {
+  display: flex;
+  min-height: 1.85rem;
+  align-items: stretch;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.lualineSide {
+  display: inline-flex;
+  min-width: 0;
+  align-items: stretch;
+}
+
+.lualineMode,
+.lualineLocation {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.75rem;
+  background: var(--mode-color);
+  color: var(--page-bg);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition: background 140ms ease;
+}
+
+.lualineLocation {
+  min-width: 3.75rem;
+  justify-content: center;
+}
+
+.lualineBranch,
+.lualineProgress {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 0.75rem;
+  background: var(--surface-raised);
+  color: var(--mode-color);
+  font-weight: 500;
+  transition: color 140ms ease;
+}
+
+.lualineBranch svg {
+  width: 0.72rem;
+  height: 0.72rem;
+}
+
+.lualineProgress {
+  min-width: 3.25rem;
+  justify-content: center;
+  color: var(--text);
+}
+
+.lualineShowcmd {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.75rem;
+  color: var(--mode-color);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.lualineBuffer,
+.lualineFiletype {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.85rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.lualineBuffer {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lualineStatusMsg {
+  color: var(--text);
+}
+
+.lualineErrorMsg {
+  color: #f87171;
+  font-weight: 600;
+}
+
+.lualineContactLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.85rem;
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.lualineContactLink:hover {
+  background: rgba(139, 224, 201, 0.1);
+  color: var(--accent-hover);
+}
+
+.nvimCmdContainer {
+  border-bottom: 1px solid var(--border);
+  background: #0d1219;
+}
+
+.nvimWildmenu {
+  display: grid;
+  max-height: 15rem;
+  margin: 0;
+  padding: 0.35rem;
+  overflow-y: auto;
+  border-bottom: 1px solid var(--border);
+  background: rgba(21, 29, 39, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  list-style: none;
+}
+
+.nvimWildItem,
+.nvimWildItemActive {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.nvimWildItemActive {
+  background: var(--surface-raised);
+  box-shadow: inset 0 0 0 1px rgba(252, 211, 77, 0.3);
+}
+
+.nvimWildCmd {
+  color: #fcd34d;
+  font-weight: 600;
+}
+
+.nvimWildDesc {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.nvimCmdLine {
+  display: flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  background: #0d1219;
+}
+
+.nvimCmdColon {
+  margin-right: 0.25rem;
+  color: #fcd34d;
+  font-weight: 700;
+}
+
+.nvimCmdInput {
+  flex: 1;
+  min-width: 0;
+  padding: 0.15rem 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-mono-stack);
+  font-size: 0.78rem;
+}
+
+.nvimCmdInput:focus-visible {
+  outline: none;
+}
+
+.nvimCmdInput::placeholder {
+  color: rgba(173, 185, 201, 0.45);
+}
+
+.nvimHelpPopup {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 2.6rem;
+  z-index: 1050;
+  width: min(400px, calc(100vw - 2.5rem));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(17, 24, 33, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+}
+
+.nvimHelpHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.nvimHelpClose {
+  padding: 0.15rem 0.4rem;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.nvimHelpClose:hover {
+  color: var(--text);
+}
+
+.nvimHelpBody {
+  padding: 0.85rem 0.9rem;
+  line-height: 1.5;
+}
+
+.nvimHelpSection {
+  margin: 0 0 0.45rem;
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.nvimHelpList {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0 0 0.85rem;
+}
+
+.nvimHelpList:last-child {
+  margin-bottom: 0;
+}
+
+.nvimHelpList > div {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 0.5rem;
+}
+
+.nvimHelpList dt {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.nvimHelpList dd {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.nvimExitOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: #090d12;
+  font-family: var(--font-mono-stack);
+}
+
+.nvimExitTerminal {
+  width: min(560px, 100%);
+  padding: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--page-bg);
+  box-shadow: 0 20px 48px -16px rgba(0, 0, 0, 0.8);
+}
+
+.nvimExitLine {
+  margin: 0 0 0.5rem;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.nvimExitPrompt {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.nvimExitMuted {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.nvimExitNote {
+  margin: 0 0 1.35rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.nvimReopenBtn {
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: rgba(139, 224, 201, 0.1);
+  color: var(--accent);
+  font-family: var(--font-mono-stack);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.nvimReopenBtn:hover {
+  background: var(--accent);
+  color: var(--page-bg);
+}
+
+.skipLink {
+  position: fixed;
+  z-index: 1100;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--page-bg);
+  transform: translateY(-200%);
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+  color: var(--page-bg);
+}
+
+@media (max-width: 991px) {
+  .navLinks {
+    padding-top: 1rem;
+  }
+
+  .linkElement {
+    display: flex;
+  }
+}
+
+@media (max-width: 720px) {
+  .lualineFiletype {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .content,
+  .navInner {
+    width: calc(100% - 2rem);
+  }
+
+  .lualineBranch {
+    display: none;
+  }
+
 }

@@ -1,0 +1,80 @@
+{
+  "updatedAt": "2026-10-15T22:12:08.852Z",
+  "data": [
+    {
+      "appId": 3450310,
+      "flyer": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3450310/478711aff6212e85a15c2228d14710f129946363/library_600x900.jpg",
+      "playHour": 214,
+      "playMinutes": 57,
+      "recentAchievements": [
+        {
+          "globalPercentage": 0,
+          "imgUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3450310/4f813f5976795d25794e1ebffa9d44716df120ce.jpg",
+          "name": "A Tale of Two Cities"
+        },
+        {
+          "globalPercentage": 0,
+          "imgUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3450310/2383254ea0ea03da8be1ec2faa3f9e9d25845127.jpg",
+          "name": "Reborn from the Ashes"
+        },
+        {
+          "globalPercentage": 0,
+          "imgUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/3450310/99447217a42b1b2638b0c4568d7af0e7176b1f96.jpg",
+          "name": "Hóngwǔ Dì"
+        }
+      ],
+      "storePageUrl": "https://store.steampowered.com/app/3450310/Europa_Universalis_V/",
+      "title": "Europa Universalis V"
+    },
+    {
+      "appId": 2400510,
+      "flyer": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2400510/library_600x900.jpg",
+      "playHour": 4,
+      "playMinutes": 53,
+      "recentAchievements": [
+        {
+          "globalPercentage": 0,
+          "imgUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/2400510/e24fa2fe580b8e7c9395b734f361e02280881bc9.jpg",
+          "name": "Like a Boss"
+        },
+        {
+          "globalPercentage": 0,
+          "imgUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/2400510/35b2028ae2b4941b1cd2807bcdeff3d9e2d86d97.jpg",
+          "name": "Hopeful"
+        },
+        {
+          "globalPercentage": 0,
+          "imgUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/2400510/5930e19cd1d5b28daca58641a22221af9507b895.jpg",
+          "name": "Jackpot"
+        }
+      ],
+      "storePageUrl": "https://store.steampowered.com/app/2400510/Dungeons_&_Degenerate_Gamblers/",
+      "title": "Dungeons & Degenerate Gamblers"
+    },
+    {
+      "appId": 1085660,
+      "flyer": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1085660/1aa20f983639643d7961f3ffcadf63bd3c49362f/library_capsule.jpg",
+      "playHour": 1491,
+      "playMinutes": 52,
+      "recentAchievements": [
+        {
+          "globalPercentage": 0,
+          "imgUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/5618ff9afb3b097ad99ba0d34e3eb9e674a02f27.jpg",
+          "name": "Seal the Deal"
+        },
+        {
+          "globalPercentage": 0,
+          "imgUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/e9ce8a6dae6e12e71fafaa3f15116461d61e7a5b.jpg",
+          "name": "The Prestige"
+        },
+        {
+          "globalPercentage": 0,
+          "imgUrl": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/1085660/da27fe8a4ee4379e15de5d280b99201d94651f8d.jpg",
+          "name": "High-Stakes Play"
+        }
+      ],
+      "storePageUrl": "https://store.steampowered.com/app/1085660/Destiny_2/",
+      "title": "Destiny 2"
+    }
+  ]
+}

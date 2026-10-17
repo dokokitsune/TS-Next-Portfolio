@@ -1,4 +1,4 @@
-interface Achevement {
+export interface Achievement {
   name: string | undefined;
   imgUrl: string | undefined;
   globalPercentage: number;
@@ -8,7 +8,8 @@ export interface Game {
   storePageUrl: string;
   appId: number;
   flyer: string;
+  iconUrl?: string;
   playHour: number;
   playMinutes: number;
-  recentAchievements: Achevement[];
+  recentAchievements: Achievement[];
 }

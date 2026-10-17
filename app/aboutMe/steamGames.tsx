@@ -1,13 +1,30 @@
 "use client";
+
 import { Card } from "react-bootstrap";
 import { Game } from "../lib/steamInterfaces";
 import Image from "next/image";
-import React from "react";
-
+import { useState } from "react";
 import styles from "../home.module.css";
 
 interface localGamesProps {
   data: Game[];
+}
+
+function GameCover({ game }: { game: Game }) {
+  const [src, setSrc] = useState(game.flyer);
+  return (
+    <Image
+      src={src}
+      className={styles.gameImage}
+      alt={`${game.title} cover art`}
+      width={150}
+      height={226}
+      sizes="100px"
+      onError={() => {
+        if (game.iconUrl && src !== game.iconUrl) setSrc(game.iconUrl);
+      }}
+    />
+  );
 }
 
 const timeFormat = (hour: number, minute: number) => {
@@ -24,62 +41,43 @@ const timeFormat = (hour: number, minute: number) => {
   }
 };
 
-const SteamCard: React.FC<localGamesProps> = ({ data }) => {
+export default function SteamCard({ data }: localGamesProps) {
   return (
     <div className={styles.steamContainer}>
-      {data &&
-        data.map((e) => (
-          <Card
-            key={e.appId}
-            style={{ backgroundColor: "#1c1c1c", color: "white" }}
-          >
-            <Card.Body className={styles.steamCardContianer}>
-              <div className={styles.steamBody}>
-                <Card.Title style={{ textAlign: "center" }}>
-                  <a href={e.storePageUrl} target="_blank">
-                    {e.title}
-                  </a>
-                </Card.Title>
-                <div style={{ textAlign: "center", marginBottom: "5px" }}>
-                  Playtime: {timeFormat(e.playHour, e.playMinutes)}
-                </div>
-                <div className={styles.gameCard}>
-                  <Image
-                    src={e.flyer}
-                    style={{ borderRadius: "5px" }}
-                    alt="Flyer Not Found"
-                    width={150}
-                    height={226}
-                  />
-                  <ul className={styles.achievementsList}>
-                    <li style={{ fontSize: "1.25em" }}>
-                      <u>Recent Achievements</u>
+      {data.map((game) => (
+        <Card key={game.appId} className={styles.activityCard}>
+          <Card.Body className={styles.steamBody}>
+            <h4 className={styles.activityTitle}>
+              <a href={game.storePageUrl} target="_blank" rel="noreferrer">
+                {game.title} <span aria-hidden="true">↗</span>
+              </a>
+            </h4>
+            <p className={styles.activityMeta}>
+              Playtime: {timeFormat(game.playHour, game.playMinutes)}
+            </p>
+            <div className={styles.gameCard}>
+              <GameCover game={game} />
+              <ul className={styles.achievementsList}>
+                <li className={styles.achievementsHeading}>Recent achievements</li>
+                {game.recentAchievements.length > 0 ? (
+                  game.recentAchievements.map((achievement, index) => (
+                    <li key={`${game.appId}-achievement-${index}`}>
+                      <div className={styles.achievements}>
+                        {achievement.imgUrl && (
+                          <Image src={achievement.imgUrl} alt="" width={32} height={32} />
+                        )}
+                        <p className={styles.achievementItem}>{achievement.name}</p>
+                      </div>
                     </li>
-                    {e.recentAchievements.length > 0 ? (
-                      e.recentAchievements.map((a, index) => (
-                        <li key={`${e.appId}-achievement-${index}`}>
-                          <div className={styles.achievements}>
-                            <Image
-                              src={a.imgUrl || ""}
-                              alt="Pic Not Found"
-                              width={50}
-                              height={50}
-                            />
-                            <p className={styles.achievementItem}>{a.name}</p>
-                          </div>
-                        </li>
-                      ))
-                    ) : (
-                      <li>No Recent Achievements</li>
-                    )}
-                  </ul>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
-        ))}
+                  ))
+                ) : (
+                  <li>No recent achievements</li>
+                )}
+              </ul>
+            </div>
+          </Card.Body>
+        </Card>
+      ))}
     </div>
   );
-};
-
-export default SteamCard;
+}
