@@ -64,7 +64,7 @@ export default function SteamCard({ data }: localGamesProps) {
                     <li key={`${game.appId}-achievement-${index}`}>
                       <div className={styles.achievements}>
                         {achievement.imgUrl && (
-                          <Image src={achievement.imgUrl} alt="" width={32} height={32} />
+                          <Image src={achievement.imgUrl} alt="" width={32} height={32} unoptimized />
                         )}
                         <p className={styles.achievementItem}>{achievement.name}</p>
                       </div>
